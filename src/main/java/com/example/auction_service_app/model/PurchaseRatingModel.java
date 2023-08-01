@@ -29,4 +29,7 @@ public class PurchaseRatingModel {
     @Column(name = "sellerComment")
     private String sellerComment;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private PurchaseModel purchaseModel;
+
 }
