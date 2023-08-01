@@ -1,7 +1,7 @@
-package repository;
+package com.example.auction_service_app.repository;
 
 
-import model.PurchaseModel;
+import com.example.auction_service_app.model.PurchaseModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
