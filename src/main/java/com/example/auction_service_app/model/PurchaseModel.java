@@ -26,6 +26,6 @@ public class PurchaseModel {
     @OneToOne
     private UserModel userModel;
 
-    @Column(name = "value")
+    @Column(name = "purchase_value")
     private BigDecimal value;
 }
