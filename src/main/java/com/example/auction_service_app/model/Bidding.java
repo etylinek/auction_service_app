@@ -29,7 +29,7 @@ public class Bidding {
     @JoinColumn(name = "user_id", nullable = false)
     private UserModel user;
 
-    @Column(name = "value")
+    @Column(name = "bidding_value")
     private BigDecimal value;
 
 }

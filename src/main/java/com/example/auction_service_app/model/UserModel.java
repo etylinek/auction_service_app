@@ -16,7 +16,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "Users")
+@Table(name = "users")
 public class UserModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,11 +38,5 @@ public class UserModel {
     @Column(name = "account_creation_date")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date accountCreationDate;
-
-   @OneToMany(mappedBy = "User")
-    private List<AuctionModel> auctions;
-
-    @OneToMany(mappedBy = "User", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<AuctionObservation> auctionObservations;
 
 }
