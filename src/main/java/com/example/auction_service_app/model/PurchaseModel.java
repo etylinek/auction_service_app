@@ -16,14 +16,15 @@ import java.math.BigDecimal;
 @Entity
 public class PurchaseModel {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @OneToOne
+    private AuctionModel auctionModel;
 
-//    @OneToOne
-//    private AuctionModel id;
+    @OneToOne
+    private UserModel userModel;
 
     @Column(name = "value")
     private BigDecimal value;
