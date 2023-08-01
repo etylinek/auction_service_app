@@ -8,6 +8,8 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -37,6 +39,10 @@ public class UserModel {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date accountCreationDate;
 
-   /* @OneToMany(mappedBy = "User")
-    private List<Auction> auctions;*/
+   @OneToMany(mappedBy = "User")
+    private List<AuctionModel> auctions;
+
+    @OneToMany(mappedBy = "User", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<AuctionObservation> auctionObservations;
+
 }
