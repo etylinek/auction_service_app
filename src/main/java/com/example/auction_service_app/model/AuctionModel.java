@@ -1,4 +1,4 @@
-package model;
+package com.example.auction_service_app.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
