@@ -22,19 +22,20 @@ public class AuctionModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @OneToOne
+    private CategoryModel categoryModel;
 
-    //FK category_id
-    //FK user_id
+    @OneToOne
+    private UserModel userModel;
 
     //List<STring> images czy wrzucić do innej tabeli?
-
 
     @Column(name = "name")
     private String name;
 
 
     @Column(name = "description")
-    private  String description;
+    private String description;
 
     @Column(name = "min_value")
     private BigDecimal minValue;
@@ -46,7 +47,7 @@ public class AuctionModel {
     boolean isPromoted;
 
     @Column(name = "start_date")
-  //  @DateTimeFormat(pattern = "yyyy-MM-dd")
+    //  @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startDate;
 
     @Column(name = "end_date")
