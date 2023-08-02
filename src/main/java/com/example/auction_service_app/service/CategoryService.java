@@ -15,5 +15,6 @@ public class CategoryService {
 
     public List<CategoryModel> getAllCategories() {
         return categoryRepository.findAll();
-    }
+    } // 1.1 Prezentacja kategorii
+
 }
