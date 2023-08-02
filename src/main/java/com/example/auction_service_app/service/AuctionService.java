@@ -1,5 +1,6 @@
 package com.example.auction_service_app.service;
 
+import com.example.auction_service_app.model.AccountStatus;
 import com.example.auction_service_app.model.AuctionModel;
 import com.example.auction_service_app.model.CategoryModel;
 import com.example.auction_service_app.model.UserModel;
@@ -8,6 +9,7 @@ import com.example.auction_service_app.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -22,6 +24,16 @@ public class AuctionService {
     public List<AuctionModel> getAllAuctions() {
         return auctionRepository.findAll();
     }
+    public List<AuctionModel> getAuctionsByUser(UserModel user) { // 1.4 Prezentacja listy aukcji (zalogowanego) usera
+        return auctionRepository.findByUser(user);
+    }
+    /*public List<AuctionModel> getAuctionsByUser(UserModel user) { //opcjonalna metoda do znajdywania użytkownika po statusie zalogowania
+        if (user.getAccountStatus() != AccountStatus.ACTIVE) {
+            return Collections.emptyList(); // zwraca pustą listę
+        }
+
+        return auctionRepository.findByUser(user);
+    }*/
 
  /*   public AuctionModel getAuctionById(Long id) {
         return auctionRepository.findById(id)

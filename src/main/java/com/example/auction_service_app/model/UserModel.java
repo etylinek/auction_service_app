@@ -39,4 +39,8 @@ public class UserModel {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date accountCreationDate;
 
+    @Column(name = "account_status", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private AccountStatus accountStatus = AccountStatus.INACTIVE; // domyślny status konta usera
+
 }
