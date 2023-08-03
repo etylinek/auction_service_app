@@ -99,23 +99,55 @@
                             <div class="form-group row">
                                 <label class="col-2 col-form-label">Nazwa</label>
                                 <div class="col-10">
-                                    <input class="form-control" type="text" name="account_name" placeholder="uzupełnij nazwę">
+                                    <input class="form-control" type="text" name="accountName" placeholder="uzupełnij nazwę">
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label class="col-2 col-form-label">URL Git</label>
+                                <label class="col-2 col-form-label">Województwo</label>
                                 <div class="col-10">
-                                    <input class="form-control" type="text" name="gitHub" placeholder="uzupełnij url do gita">
+                                    <input class="form-control" type="text" name="voievodeship" placeholder="uzupełnij url do gita">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-2 col-form-label">Hasło</label>
+                                <div class="col-10">
+                                    <input class="form-control" type="text" name="password" placeholder="uzupełnij url do gita">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-2 col-form-label">Miasto</label>
+                                <div class="col-10">
+                                    <input class="form-control" type="text" name="city" placeholder="uzupełnij url do gita">
                                 </div>
                             </div>
 
 
+                            <div class="form-group row">
+                                <label class="col-2 col-form-label">Adres</label>
+                                <div class="col-10">
+                                    <input class="form-control" type="text" name="address" placeholder="uzupełnij url do gita">
+                                </div>
+                            </div>
+
+
+                                    <div class="form-group row">
+                                        <label class="col-2 col-form-label">Adres</label>
+                                        <div class="col-10">
+                                            <input class="form-control" type="text" name="accountCreationDate" placeholder="uzupełnij url do gita">
+                                        </div>
+                                    </div>
+
+
+
+
 
                             <div class="form-group row">
-                                <label class="col-2 col-form-label">Od czego się zaczęło:</label>
+                                <label class="col-2 col-form-label">Status</label>
                                 <div class="col-10">
-                                <textarea class="form-control" rows="5" name="start"
+                                <textarea class="form-control" rows="5" name="accountStatus"
                                           placeholder="napisz kilka słów co Cię zmotywowało aby zostać programistą..."></textarea>
                                 </div>
                             </div>

@@ -19,11 +19,11 @@
     </li>
 
     <!-- Nav Item - Kursanci -->
-    <li class="nav-item">
-        <a class="nav-link" href='<c:url value="/students"/>'>
-            <i class="fas fa-users"></i>
-            <span>Kursanci</span></a>
-    </li>
+<%--    <li class="nav-item">--%>
+<%--        <a class="nav-link" href='<c:url value="/students"/>'>--%>
+<%--            <i class="fas fa-users"></i>--%>
+<%--            <span>Kursanci</span></a>--%>
+<%--    </li>--%>
 
     <!-- Nav Item - Kurs -->
     <li class="nav-item">
@@ -34,11 +34,11 @@
 
 
     <!-- Nav Item - Tasks -->
-    <li class="nav-item">
-        <a class="nav-link" href='<c:url value="/tasks"/>'>
-            <i class="fas fa-clipboard-list"></i>
-            <span>Taski</span></a>
-    </li>
+<%--    <li class="nav-item">--%>
+<%--        <a class="nav-link" href='<c:url value="/tasks"/>'>--%>
+<%--            <i class="fas fa-clipboard-list"></i>--%>
+<%--            <span>Taski</span></a>--%>
+<%--    </li>--%>
 
 
     <!-- Nav Item - Technologie -->
