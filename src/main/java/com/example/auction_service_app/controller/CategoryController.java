@@ -22,7 +22,7 @@ public class CategoryController {
     @GetMapping
     public String getCategoryList(Model model){
         List<CategoryModel> categoryList = categoryService.getAllCategories();
-        model.addAttribute("categoryModel", categoryList);
+        model.addAttribute("categories", categoryList);
         return "/categoryList"; //widok do dodania
     }
 }

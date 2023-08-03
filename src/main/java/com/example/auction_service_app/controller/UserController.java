@@ -7,10 +7,8 @@ import com.example.auction_service_app.model.UserModel;
 import com.example.auction_service_app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
 import java.util.List;
@@ -21,6 +19,18 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @GetMapping("/addUser")
+    public String getAddUser(){
+        return "user/addNewUser";
+    }
+
+    @PostMapping("/addUser")
+    public RedirectView postUser(UserModel user){
+        userService.addUser(user);
+        return new RedirectView("/users");
+    }
+
 
    /* @GetMapping("/{id}")
     public UserModel getUserById(@PathVariable Long id) {
