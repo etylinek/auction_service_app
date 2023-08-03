@@ -1,11 +1,9 @@
 package com.example.auction_service_app.service;
 
-import com.example.auction_service_app.model.AccountStatus;
-import com.example.auction_service_app.model.AuctionModel;
-import com.example.auction_service_app.model.CategoryModel;
-import com.example.auction_service_app.model.UserModel;
+import com.example.auction_service_app.model.*;
 import com.example.auction_service_app.repository.AuctionObservationRepository;
 import com.example.auction_service_app.repository.AuctionRepository;
+import com.example.auction_service_app.repository.BiddingRepository;
 import com.example.auction_service_app.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,13 +23,23 @@ public class AuctionService {
 
     private final CategoryRepository categoryRepository;
 
+    private final BiddingRepository biddingRepository;
+
 
     public List<AuctionModel> getAllAuctions() {
         return auctionRepository.findAll();
     }
     public List<AuctionModel> getAuctionsByUser(UserModel user) { // 1.4 Prezentacja listy aukcji (zalogowanego) usera
-//        return auctionRepository.findByUser(user);
-        return List.of();
+       return auctionRepository.findByUserModel(user);
+//        return List.of();
+    }
+    public List<BiddingModel> getBiddingsByUser(UserModel user){
+        return biddingRepository.findByUserModel(user);
+ //       return List.of();
+    }
+    public List<AuctionObservationModel> getObservedAuctionsByUser(UserModel user){
+         return auctionObservationRepository.findByUserModel(user);
+ //       return List.of();
     }
     /*public List<AuctionModel> getAuctionsByUser(UserModel user) { //opcjonalna metoda do znajdywania użytkownika po statusie zalogowania
         if (user.getAccountStatus() != AccountStatus.ACTIVE) {
