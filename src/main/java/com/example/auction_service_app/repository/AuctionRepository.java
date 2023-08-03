@@ -10,5 +10,5 @@ import java.util.List;
 
 @Repository
 public interface AuctionRepository extends JpaRepository<AuctionModel,Long> {
-    List<AuctionModel> findByUser(UserModel user); // Potrzebne do punktu 1.4 prezentacja listy aukcji usera (alternatywnie może być zalogowanego)
+    List<AuctionModel> findByUserModel(UserModel user); // Potrzebne do punktu 1.4 prezentacja listy aukcji usera (alternatywnie może być zalogowanego)
 }

@@ -30,7 +30,8 @@ public class AuctionService {
         return auctionRepository.findAll();
     }
     public List<AuctionModel> getAuctionsByUser(UserModel user) { // 1.4 Prezentacja listy aukcji (zalogowanego) usera
-        return auctionRepository.findByUser(user);
+//        return auctionRepository.findByUser(user);
+        return List.of();
     }
     /*public List<AuctionModel> getAuctionsByUser(UserModel user) { //opcjonalna metoda do znajdywania użytkownika po statusie zalogowania
         if (user.getAccountStatus() != AccountStatus.ACTIVE) {
