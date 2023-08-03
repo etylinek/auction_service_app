@@ -11,7 +11,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "AuctionObservation")
 public class AuctionObservationModel {
 
     @Id
@@ -24,5 +23,5 @@ public class AuctionObservationModel {
 
     @ManyToOne // pomysl jest taki, zeby kazda aukcja miala swoja obserwacje, natomiast wielu userow moze byc polaczonych z dana obserwacja
     @JoinColumn(name = "user_id", nullable = false)
-    private UserModel user;
+    private UserModel userModel;
 }

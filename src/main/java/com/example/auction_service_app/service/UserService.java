@@ -1,19 +1,9 @@
 package com.example.auction_service_app.service;
 
-import com.example.auction_service_app.controller.UserController;
-import com.example.auction_service_app.model.AuctionModel;
-import com.example.auction_service_app.model.AuctionObservation;
-import com.example.auction_service_app.model.Bidding;
 import com.example.auction_service_app.model.UserModel;
-import com.example.auction_service_app.repository.AuctionObservationRepository;
-import com.example.auction_service_app.repository.AuctionRepository;
-import com.example.auction_service_app.repository.BiddingRepository;
 import com.example.auction_service_app.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor

@@ -13,7 +13,6 @@ import java.math.BigDecimal;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "Bidding")
 public class BiddingModel {
 
     @Id
@@ -27,7 +26,7 @@ public class BiddingModel {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private UserModel user;
+    private UserModel userModel;
 
     @Column(name = "bidding_value")
     private BigDecimal value;
