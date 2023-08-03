@@ -6,30 +6,23 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.math.BigDecimal;
-
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "Bidding")
-public class Bidding {
+@Table(name = "AuctionObservation")
+public class AuctionObservationModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "bidding_id")
     private Long id;
 
-    @ManyToOne
+    @OneToOne // pomysl jest taki, zeby kazda aukcja miala swoja obserwacje, natomiast wielu userow moze byc polaczonych z dana obserwacja
     @JoinColumn(name = "auction_id", nullable = false)
     private AuctionModel auction;
 
-    @ManyToOne
+    @ManyToOne // pomysl jest taki, zeby kazda aukcja miala swoja obserwacje, natomiast wielu userow moze byc polaczonych z dana obserwacja
     @JoinColumn(name = "user_id", nullable = false)
     private UserModel user;
-
-    @Column(name = "bidding_value")
-    private BigDecimal value;
-
 }
