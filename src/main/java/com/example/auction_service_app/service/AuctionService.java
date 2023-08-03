@@ -4,8 +4,10 @@ import com.example.auction_service_app.model.AccountStatus;
 import com.example.auction_service_app.model.AuctionModel;
 import com.example.auction_service_app.model.CategoryModel;
 import com.example.auction_service_app.model.UserModel;
+import com.example.auction_service_app.repository.AuctionObservationRepository;
 import com.example.auction_service_app.repository.AuctionRepository;
 import com.example.auction_service_app.repository.CategoryRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,13 +15,16 @@ import java.util.Collections;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class AuctionService {
 
-    @Autowired
-    private AuctionRepository auctionRepository;
 
-    @Autowired
-    private CategoryRepository categoryRepository;
+    private final AuctionRepository auctionRepository;
+
+    private final AuctionObservationRepository auctionObservationRepository;
+
+    private final CategoryRepository categoryRepository;
+
 
     public List<AuctionModel> getAllAuctions() {
         return auctionRepository.findAll();
