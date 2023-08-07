@@ -1,5 +1,6 @@
 package com.example.auction_service_app.model;
 
+import com.example.auction_service_app.types.AccountStatusType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,8 +9,6 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
-import java.util.List;
-import java.util.Set;
 
 @Entity
 @Getter
@@ -41,6 +40,6 @@ public class UserModel {
 
     @Column(name = "account_status", nullable = false)
     @Enumerated(EnumType.STRING)
-    private AccountStatus accountStatus = AccountStatus.INACTIVE; // domyślny status konta usera
+    private AccountStatusType accountStatusType = AccountStatusType.INACTIVE; // domyślny status konta usera
 
 }
