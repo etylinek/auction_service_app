@@ -15,7 +15,7 @@ public class UserController {
 
     private final UserService userService;
 
-    @GetMapping("/addUser")
+    @GetMapping("/")
     public String getAddUser(){
         return "users/addNewUser";
     }

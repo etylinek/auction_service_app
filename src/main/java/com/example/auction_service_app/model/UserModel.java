@@ -1,7 +1,7 @@
 package com.example.auction_service_app.model;
 
 import com.example.auction_service_app.types.AccountStatusType;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
