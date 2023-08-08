@@ -15,7 +15,13 @@ public class UserService {
         userRepository.save(user);
     }
 
+    public UserModel getUserById(Long id) {
+        return userRepository.findById(id).orElse(null);
+    }
 
+    public void editUser(UserModel editUser) {
+        userRepository.save(editUser);
+    }
 
 
 
@@ -34,9 +40,7 @@ public class UserService {
 //    @Autowired
 //    private AuctionObservationRepository auctionObservationRepository;
 
-/*    public UserModel getUserById(Long id) {
-        return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException());
-    }*/
+
 
 /*    public List<AuctionModel> getAuctionsByUserEmail(String email) {
         UserModel user = userRepository.findByEmail(email);

@@ -3,8 +3,8 @@ package com.example.auction_service_app.controller;
 import com.example.auction_service_app.model.UserModel;
 import com.example.auction_service_app.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -25,6 +25,22 @@ public class UserController {
         userService.addUser(user);
         return new RedirectView("/users");
     }
+
+    @GetMapping("/editUser/{id}")
+    public String getEditUser(@PathVariable Long id, Model model) {
+        UserModel userById = userService.getUserById(id);
+        model.addAttribute("user", userById);
+        return "users/editUser";
+    }
+
+    @PostMapping("/editUser/{id}")
+    public RedirectView postEditUser(UserModel editUser) {
+        userService.editUser(editUser);
+        return new RedirectView("/users");
+    }
+
+
+
 
 
    /* @GetMapping("/{id}")
