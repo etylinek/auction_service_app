@@ -15,7 +15,7 @@ public class AuctionController {
     @Autowired
     private AuctionService auctionService;
 
-        @GetMapping
+        @GetMapping("/")
         public String getAllAuctions(Model model) {
             List<AuctionModel> auctions = auctionService.getAllAuctions();
             model.addAttribute("auctions", auctions);
