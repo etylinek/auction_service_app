@@ -9,4 +9,5 @@ import java.util.List;
 
 public interface BiddingRepository extends JpaRepository<BiddingModel, Long> {
     List<BiddingModel> findByUserModel(UserModel user);
+
 }
