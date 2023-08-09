@@ -20,10 +20,10 @@ public class UserController {
         return "users/addNewUser";
     }
 
-    @PostMapping("/addUser")
+    @PostMapping("/")
     public RedirectView postUser(UserModel user){
         userService.addUser(user);
-        return new RedirectView("/users");
+        return new RedirectView("/users/");
     }
 
     @GetMapping("/editUser/{id}")
