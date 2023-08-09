@@ -46,6 +46,21 @@ public class AuctionService {
         auctionRepository.save(auction);
     }
 
+    public void deleteAuction(Long id) {
+        auctionRepository.deleteById(id);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
     /*public List<AuctionModel> getAuctionsByUser(UserModel user) { //opcjonalna metoda do znajdywania użytkownika po statusie zalogowania
         if (user.getAccountStatus() != AccountStatus.ACTIVE) {
             return Collections.emptyList(); // zwraca pustą listę

@@ -32,5 +32,46 @@ public class AuctionController {
     }
 
 
+
+
+
+
+
+    @PostMapping("/deleteAuction/{id}")
+    public RedirectView deleteAuction(@PathVariable Long id) {
+        auctionService.deleteAuction(id);
+        return new RedirectView("/auctions/");
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         // ...
     }
