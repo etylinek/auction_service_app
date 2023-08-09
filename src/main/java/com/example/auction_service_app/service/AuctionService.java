@@ -41,6 +41,11 @@ public class AuctionService {
          return auctionObservationRepository.findByUserModel(user);
  //       return List.of();
     }
+
+    public void addAuction(AuctionModel auction){
+        auctionRepository.save(auction);
+    }
+
     /*public List<AuctionModel> getAuctionsByUser(UserModel user) { //opcjonalna metoda do znajdywania użytkownika po statusie zalogowania
         if (user.getAccountStatus() != AccountStatus.ACTIVE) {
             return Collections.emptyList(); // zwraca pustą listę
