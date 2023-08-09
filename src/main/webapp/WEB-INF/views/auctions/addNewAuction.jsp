@@ -27,10 +27,13 @@
             <!-- End of Topbar -->
 
             <!-- Begin Page Content -->
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <h1 class="h3 mb-0 text-gray-800">   Dodaj aukcje</h1>
+            </div>
 
 
             <div class="container-fluid">
-                <form method="post" action='<c:url value="/users/"/>'>
+                <form method="post" action='<c:url value="/auctions/addAuction"/>'>
                 <div class="row">
                     <div class="col-12">
 
@@ -40,34 +43,32 @@
 
 
                                 <div class="form-group row">
-                                    <label class="col-2 col-form-label">Nazwa konta</label>
-                                    <input class="col-10 form-control" type="text" name="accountName" placeholder="wpisz nazwę">
+                                    <label class="col-2 col-form-label">Nazwa przedmiotu</label>
+                                    <input class="col-10 form-control" type="text" name="name" placeholder="wpisz nazwę">
                                 </div>
 
 
                                 <div class="form-group row">
-                                    <label class="col-2 col-form-label">Hasło</label>
-                                    <input class="col-10 form-control" name="password" type="text" placeholder="wpisz hasło">
+                                    <label class="col-2 col-form-label">Opis przedmiotu</label>
+                                    <textarea class="col-10 form-control" name="description" type="text" rows="4"
+                                              placeholder="uzupełnij opis"></textarea>
                                 </div>
 
                                 <div class="form-group row">
-                                    <label class="col-2 col-form-label">E-mail</label>
-                                    <input class="col-10 form-control" name="email" type="text" placeholder="wpisz e-mail">
+                                    <label class="col-2 col-form-label">Minimalna cena</label>
+                                    <input class="col-4 form-control" type="number" name="minValue">
+
+                                    <label class="col-2 col-form-label">Cena Kup Teraz</label>
+                                    <input class="col-4 form-control" type="number" name="buyNowValue">
                                 </div>
 
                                 <div class="form-group row">
-                                    <label class="col-2 col-form-label">Województwo</label>
-                                    <input class="col-10 form-control" type="text" name="voievodeship" placeholder="wpisz województwo">
-                                </div>
+                                    <label class="col-2 col-form-label">Data zakonczneia aukcji</label>
+                                    <input class="col-2 form-control" type="date" name="endDate">
 
-                                <div class="form-group row">
-                                    <label class="col-2 col-form-label">Miasto</label>
-                                    <input class="col-10 form-control" type="text" name="city" placeholder="wpisz miasto">
-                                </div>
+                                    <label class="col-2 col-form-label">Promuj aukcje</label>
+                                    <input class="col-2 form-control" type="checkbox" name="isPromoted">
 
-                                <div class="form-group row">
-                                    <label class="col-2 col-form-label">Ulica i numer domu</label>
-                                    <input class="col-10 form-control" type="text" name="address" placeholder="wpisz adres">
                                 </div>
 
 
@@ -79,7 +80,7 @@
 <%--                                </div>--%>
 
 
-                            </div>
+
                         </div>
                     </div>
                 </div>
