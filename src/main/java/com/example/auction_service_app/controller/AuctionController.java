@@ -1,19 +1,22 @@
 package com.example.auction_service_app.controller;
 
 import com.example.auction_service_app.model.AuctionModel;
+import com.example.auction_service_app.model.UserModel;
 import com.example.auction_service_app.service.AuctionService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/auctions")
 public class AuctionController {
-    @Autowired
-    private AuctionService auctionService;
+
+    private final AuctionService auctionService;
 
         @GetMapping("/")
         public String getAllAuctions(Model model) {
@@ -21,6 +24,13 @@ public class AuctionController {
             model.addAttribute("auctions", auctions);
             return "auctions"; // zwraca nazwę widoku, np. "auctions.html"
         }
+
+    @PostMapping("/addAuction")
+    public RedirectView postAuction(AuctionModel auction){
+        auctionService.addAuction(auction);
+        return new RedirectView("/");
+    }
+
 
         // ...
     }
