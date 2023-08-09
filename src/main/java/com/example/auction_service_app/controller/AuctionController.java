@@ -33,16 +33,15 @@ public class AuctionController {
     }
 
 
+  
 
 
 
-
-
-
-
-
-
-
+    @PostMapping("/deleteAuction/{id}")
+    public RedirectView deleteAuction(@PathVariable Long id) {
+        auctionService.deleteAuction(id);
+        return new RedirectView("/auctions/");
+    }
 
     // Metoda do wyszukiwania aukcji na podstawie słowa kluczowego.
     @GetMapping("/search")
@@ -59,6 +58,7 @@ public class AuctionController {
         model.addAttribute("auctions", auctions);
         return "auctions/results"; // zwraca ten sam widok, co wyszukiwanie, ale tym razem na podstawie kategorii
     }
+
 
 
 

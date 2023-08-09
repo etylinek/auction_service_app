@@ -47,9 +47,9 @@ public class AuctionService {
     }
 
 
-
-
-
+    public void deleteAuction(Long id) {
+        auctionRepository.deleteById(id);
+    }
 
     public List<AuctionModel> searchAuctions(String name) {
         // Tu logika do wyszukiwania aukcji na podstawie nazwy aukcji.
@@ -59,6 +59,7 @@ public class AuctionService {
         // Tu logika do wyszukiwania aukcji na podstawie kategorii.
         return auctionRepository.findByCategoryModel(categoryModel);
     }
+
 
 
     /*public List<AuctionModel> getAuctionsByUser(UserModel user) { //opcjonalna metoda do znajdywania użytkownika po statusie zalogowania
