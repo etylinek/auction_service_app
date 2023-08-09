@@ -47,11 +47,12 @@ public class AuctionModel {
     boolean isPromoted;
 
     @Column(name = "start_date")
-    //  @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startDate;
 
     @Column(name = "end_date")
-    //@DateTimeFormat(pattern = "yyyy-MM-dd")
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
 
 

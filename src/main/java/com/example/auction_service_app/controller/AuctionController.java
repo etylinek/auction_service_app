@@ -23,17 +23,21 @@ public class AuctionController {
         public String getAllAuctions(Model model) {
             List<AuctionModel> auctions = auctionService.getAllAuctions();
             model.addAttribute("auctions", auctions);
-            return "auctions"; // zwraca nazwę widoku, np. "auctions.html"
+            return "auctions/listAuctions"; // zwraca nazwę widoku, np. "auctions.html"
         }
+
+
+    @GetMapping("/addAuction")
+    public String getAddUser(){
+        return "auctions/addNewAuction";
+    }
 
     @PostMapping("/addAuction")
     public RedirectView postAuction(AuctionModel auction){
         auctionService.addAuction(auction);
-        return new RedirectView("/");
+        return new RedirectView("/auctions/addAuction");
     }
 
-
-  
 
 
 
@@ -61,17 +65,4 @@ public class AuctionController {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-        // ...
     }
