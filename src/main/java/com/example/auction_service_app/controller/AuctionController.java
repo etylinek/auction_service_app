@@ -1,6 +1,7 @@
 package com.example.auction_service_app.controller;
 
 import com.example.auction_service_app.model.AuctionModel;
+import com.example.auction_service_app.model.CategoryModel;
 import com.example.auction_service_app.model.UserModel;
 import com.example.auction_service_app.service.AuctionService;
 import lombok.RequiredArgsConstructor;
@@ -32,8 +33,7 @@ public class AuctionController {
     }
 
 
-
-
+  
 
 
 
@@ -43,21 +43,21 @@ public class AuctionController {
         return new RedirectView("/auctions/");
     }
 
+    // Metoda do wyszukiwania aukcji na podstawie słowa kluczowego.
+    @GetMapping("/search")
+    public String searchAuctions(@RequestParam("name") String name, Model model) {
+        List<AuctionModel> auctions = auctionService.searchAuctions(name);
+        model.addAttribute("auctions", auctions);
+        return "auctions/results"; // zwraca widok z wynikami wyszukiwania
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    // Metoda do prezentowania aukcji na podstawie kategorii.
+    @GetMapping("/category")
+    public String getAuctionsByCategory(@RequestParam("catName") CategoryModel categoryModel, Model model) {
+        List<AuctionModel> auctions = auctionService.getAuctionsByCategory(categoryModel);
+        model.addAttribute("auctions", auctions);
+        return "auctions/results"; // zwraca ten sam widok, co wyszukiwanie, ale tym razem na podstawie kategorii
+    }
 
 
 

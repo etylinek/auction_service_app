@@ -46,18 +46,19 @@ public class AuctionService {
         auctionRepository.save(auction);
     }
 
+
     public void deleteAuction(Long id) {
         auctionRepository.deleteById(id);
     }
 
-
-
-
-
-
-
-
-
+    public List<AuctionModel> searchAuctions(String name) {
+        // Tu logika do wyszukiwania aukcji na podstawie nazwy aukcji.
+        return auctionRepository.findByName(name);
+    }
+    public List<AuctionModel> getAuctionsByCategory(CategoryModel categoryModel) {
+        // Tu logika do wyszukiwania aukcji na podstawie kategorii.
+        return auctionRepository.findByCategoryModel(categoryModel);
+    }
 
 
 
