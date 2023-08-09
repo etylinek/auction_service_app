@@ -22,7 +22,7 @@ public class AuctionModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
+    @ManyToOne
     private CategoryModel categoryModel;
 
     @OneToOne
