@@ -20,8 +20,8 @@ public class AuctionController {
     private final AuctionService auctionService;
 
         @GetMapping("/")
-        public String getAllAuctions(Model model) {
-            List<AuctionModel> auctions = auctionService.getAllAuctions();
+        public String getAllActiveAuctions(Model model) {
+            List<AuctionModel> auctions = auctionService.getAllActiveAuctions();
             model.addAttribute("auctions", auctions);
             return "auctions/listAuctions"; // zwraca nazwę widoku, np. "auctions.html"
         }
