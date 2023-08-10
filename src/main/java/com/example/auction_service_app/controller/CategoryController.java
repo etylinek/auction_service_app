@@ -19,10 +19,13 @@ public class CategoryController {
 
     private final CategoryService categoryService;
 
-    @GetMapping
+    @GetMapping("/")
     public String getCategoryList(Model model){
         List<CategoryModel> categoryList = categoryService.getAllCategories();
         model.addAttribute("categories", categoryList);
-        return "/categoryList"; //widok do dodania
+        return "categories/listCategories"; //widok do dodania
     }
+
+
+
 }
