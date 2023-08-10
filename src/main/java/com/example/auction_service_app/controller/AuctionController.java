@@ -5,6 +5,7 @@ import com.example.auction_service_app.model.CategoryModel;
 import com.example.auction_service_app.model.UserModel;
 import com.example.auction_service_app.service.AuctionService;
 import com.example.auction_service_app.service.CategoryService;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,6 +37,11 @@ public class AuctionController {
         return "auctions/listAuctions"; // zwraca nazwę widoku, np. "auctions.html"
     }
 
+    @GetMapping("/auctionDetails/{id}")
+        public String getSingleAuction(@PathVariable Long id, Model model){
+        model.addAttribute("singleAuction", auctionService.getAuctionById(id));
+        return "auctions/detailsAuction";
+    }
 
     @GetMapping("/addAuction")
     public String getAddUser(Model model) {
@@ -71,7 +77,6 @@ public class AuctionController {
     // Metoda do prezentowania aukcji na podstawie kategorii.
     @GetMapping("/category/{id}")
     public String getAuctionsByCategory(@PathVariable Long id, Model model) {
-
         List<AuctionModel> auctions = auctionService.getAuctionsByCategory(categoryService.getCategoryById(id));
         model.addAttribute("auctions", auctions);
         return "auctions/listAuctions"; // zwraca ten sam widok, co wyszukiwanie, ale tym razem na podstawie kategorii
