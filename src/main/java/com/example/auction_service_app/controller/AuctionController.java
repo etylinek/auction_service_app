@@ -4,6 +4,7 @@ import com.example.auction_service_app.model.AuctionModel;
 import com.example.auction_service_app.model.CategoryModel;
 import com.example.auction_service_app.model.UserModel;
 import com.example.auction_service_app.service.AuctionService;
+import com.example.auction_service_app.service.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,20 +25,32 @@ public class AuctionController {
             List<AuctionModel> auctions = auctionService.getAllActiveAuctions();
             model.addAttribute("auctions", auctions);
             return "auctions/listAuctions"; // zwraca nazwę widoku, np. "auctions.html"
-        }
+
+    private final CategoryService categoryService;
+
+    @GetMapping("/")
+    public String getAllAuctions(Model model) {
+        List<AuctionModel> auctions = auctionService.getAllAuctions();
+        model.addAttribute("auctions", auctions);
+        return "auctions/listAuctions"; // zwraca nazwę widoku, np. "auctions.html"
+    }
+
 
 
     @GetMapping("/addAuction")
-    public String getAddUser(){
+    public String getAddUser(Model model) {
+        List<CategoryModel> categoryList = categoryService.getAllCategories();
+        model.addAttribute("categoryList", categoryList);
         return "auctions/addNewAuction";
     }
 
     @PostMapping("/addAuction")
-    public RedirectView postAuction(AuctionModel auction){
+    public RedirectView postAuction(AuctionModel auction) {
+        categoryService.setAuctionToCategory(auction);
         auctionService.addAuction(auction);
         return new RedirectView("/auctions/addAuction");
-    }
 
+    }
 
 
     @PostMapping("/deleteAuction/{id}")
@@ -56,13 +69,13 @@ public class AuctionController {
 
 
     // Metoda do prezentowania aukcji na podstawie kategorii.
-    @GetMapping("/category")
-    public String getAuctionsByCategory(@RequestParam("catName") CategoryModel categoryModel, Model model) {
-        List<AuctionModel> auctions = auctionService.getAuctionsByCategory(categoryModel);
+    @GetMapping("/category/{id}")
+    public String getAuctionsByCategory(@PathVariable Long id, Model model) {
+
+        List<AuctionModel> auctions = auctionService.getAuctionsByCategory(categoryService.getCategoryById(id));
         model.addAttribute("auctions", auctions);
-        return "auctions/results"; // zwraca ten sam widok, co wyszukiwanie, ale tym razem na podstawie kategorii
+        return "auctions/listAuctions"; // zwraca ten sam widok, co wyszukiwanie, ale tym razem na podstawie kategorii
     }
 
 
-
-    }
+}
