@@ -53,6 +53,16 @@
                                     <textarea class="col-10 form-control" name="description" type="text" rows="4"
                                               placeholder="uzupełnij opis"></textarea>
                                 </div>
+                                <div class="form-group row">
+                                    <label class="col-2 col-form-label">Wybierz kategorie</label>
+                                    <select class="form-control" id="sel1" name="categoryModel.id" >
+
+                                        <c:forEach items="${categoryList}" var="example">
+                                            <option value="${example.id}">${example.name}</option>
+                                        </c:forEach>
+
+                                    </select>
+                                </div>
 
                                 <div class="form-group row">
                                     <label class="col-2 col-form-label">Minimalna cena</label>
@@ -70,6 +80,8 @@
                                     <input class="col-2 form-control" type="checkbox" name="isPromoted">
 
                                 </div>
+
+
 
 
 
