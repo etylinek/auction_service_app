@@ -27,6 +27,9 @@ public class AuctionService {
     private final BiddingRepository biddingRepository;
 
 
+    public  AuctionModel getAuctionById(Long id){
+        return auctionRepository.findById(id).orElse(null);
+    }
     public List<AuctionModel> getAllAuctions() {
         return auctionRepository.findAll();
     }
