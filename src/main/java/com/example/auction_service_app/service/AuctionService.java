@@ -5,6 +5,7 @@ import com.example.auction_service_app.repository.AuctionObservationRepository;
 import com.example.auction_service_app.repository.AuctionRepository;
 import com.example.auction_service_app.repository.BiddingRepository;
 import com.example.auction_service_app.repository.CategoryRepository;
+import com.example.auction_service_app.types.AuctionStatusType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,10 @@ public class AuctionService {
 
     public List<AuctionModel> getAllAuctions() {
         return auctionRepository.findAll();
+    }
+
+    public List<AuctionModel> getAllActiveAuctions(){
+        return auctionRepository.findAllByAuctionStatusType(AuctionStatusType.ACTIVE);
     }
     public List<AuctionModel> getAuctionsByUser(UserModel user) { // 1.4 Prezentacja listy aukcji (zalogowanego) usera
        return auctionRepository.findByUserModel(user);

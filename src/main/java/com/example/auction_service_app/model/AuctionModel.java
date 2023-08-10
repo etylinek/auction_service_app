@@ -1,6 +1,9 @@
 package com.example.auction_service_app.model;
 
 import javax.persistence.*;
+
+import com.example.auction_service_app.types.AccountStatusType;
+import com.example.auction_service_app.types.AuctionStatusType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -58,4 +61,9 @@ public class AuctionModel {
 
     @Column(name = "views")
     private Integer views;
+
+    @Column(name = "auction_status")
+    @Enumerated(EnumType.STRING)
+    private AuctionStatusType auctionStatusType = AuctionStatusType.ACTIVE;
+
 }
