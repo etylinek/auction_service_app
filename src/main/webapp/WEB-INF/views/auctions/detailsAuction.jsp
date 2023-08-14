@@ -32,7 +32,8 @@
 
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">${singleAuction.name}</h1>
+                    <h1 class=" m-0 font-weight-bold text-primary">${singleAuction.name}</h1>
+                    <h5 class=" m-0  text-primary">${singleAuction.categoryModel.name} - ${singleAuction.categoryModel.description}</h5>
                 </div>
 
                 <div class="row">
@@ -40,48 +41,52 @@
                     <!-- Earnings (Monthly) Card Example -->
 
 
-                    <div class="col-lg-6">
+                    <div class="col-lg-12">
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">${singleAuction.name}</h6>
+                                <div class="h3 mb-0 text-gray-800 ">Opis:</div>
+                                <br>
+                                <div class="h5 mb-0 text-gray-800">${singleAuction.description}</div>
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">${singleAuction.description}</div>
+
                             <div class="card-body">
-                                    ${singleAuction.categoryModel.description}
+
+                               Cena: ${singleAuction.buyNowValue}
+                                <button class="btn btn-danger" type="submit">
+                                    <i> Kup Teraz! </i>
+                                </button>
+
                             </div>
                         </div>
                     </div>
 
 
+                    <!-- /.container-fluid -->
 
+                </div>
+                <!-- End of Main Content -->
 
+                <!-- Footer -->
+                <%@include file="../dynamic/footer.jspf" %>
+                <!-- End of Footer -->
 
-            <!-- /.container-fluid -->
+            </div>
+            <!-- End of Content Wrapper -->
 
         </div>
-        <!-- End of Main Content -->
+        <!-- End of Page Wrapper -->
 
-        <!-- Footer -->
-        <%@include file="../dynamic/footer.jspf" %>
-        <!-- End of Footer -->
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
 
-    </div>
-    <!-- End of Content Wrapper -->
+        <!-- Logout Modal-->
+        <%@include file="../dynamic/logoutModal.jspf" %>
 
-</div>
-<!-- End of Page Wrapper -->
-
-<!-- Scroll to Top Button-->
-<a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-</a>
-
-<!-- Logout Modal-->
-<%@include file="../dynamic/logoutModal.jspf" %>
-
-<!-- Bootstrap core JavaScript-->
-<%@include file="../dynamic/board.jspf" %>
-<%@include file="../dynamic/javaScript.jspf" %>
+        <!-- Bootstrap core JavaScript-->
+        <%@include file="../dynamic/board.jspf" %>
+        <%@include file="../dynamic/javaScript.jspf" %>
 
 </body>
 
