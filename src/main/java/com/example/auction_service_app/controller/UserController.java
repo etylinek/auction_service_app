@@ -23,7 +23,14 @@ public class UserController {
     @PostMapping("/")
     public RedirectView postUser(UserModel user){
         userService.addUser(user);
-        return new RedirectView("/users/");
+        return new RedirectView("/auctions/all");
+    }
+
+    @GetMapping("/showUser/{id}")
+    public String getShowUser(@PathVariable Long id, Model model) {
+        UserModel userById = userService.getUserById(id);
+        model.addAttribute("user", userById);
+        return "users/detailsUser";
     }
 
     @GetMapping("/editUser/{id}")
@@ -36,9 +43,8 @@ public class UserController {
     @PostMapping("/editUser/{id}")
     public RedirectView postEditUser(UserModel editUser) {
         userService.editUser(editUser);
-        return new RedirectView("/users");
+        return new RedirectView("../showUser/{id}");
     }
-
 
 
 
