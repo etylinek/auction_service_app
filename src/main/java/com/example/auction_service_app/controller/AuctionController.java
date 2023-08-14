@@ -4,6 +4,7 @@ import com.example.auction_service_app.model.AuctionModel;
 import com.example.auction_service_app.model.CategoryModel;
 import com.example.auction_service_app.model.UserModel;
 import com.example.auction_service_app.service.AuctionService;
+import com.example.auction_service_app.service.BiddingService;
 import com.example.auction_service_app.service.CategoryService;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Controller
@@ -21,6 +23,7 @@ public class AuctionController {
 
     private final AuctionService auctionService;
     private final CategoryService categoryService;
+    private final BiddingService biddingService;
 
 
     @GetMapping("/")
@@ -49,14 +52,26 @@ public class AuctionController {
         model.addAttribute("categoryList", categoryList);
         return "auctions/addNewAuction";
     }
-
     @PostMapping("/addAuction")
+    public RedirectView postAuction(AuctionModel auction) {
+        if (auction.getMinValue() != null && auction.getMinValue().compareTo(BigDecimal.ZERO) > 0) {
+            // to jest licytacja
+            categoryService.setAuctionToCategory(auction);
+            biddingService.addBidding(auction);
+        } else {
+            // to jest zwykła aukcja
+            categoryService.setAuctionToCategory(auction);
+            auctionService.addAuction(auction);
+        }
+        return new RedirectView("/auctions/addAuction");
+    }
+
+/*    @PostMapping("/addAuction")
     public RedirectView postAuction(AuctionModel auction) {
         categoryService.setAuctionToCategory(auction);
         auctionService.addAuction(auction);
         return new RedirectView("/auctions/addAuction");
-
-    }
+    }*/
 
 
     @PostMapping("/deleteAuction/{id}")

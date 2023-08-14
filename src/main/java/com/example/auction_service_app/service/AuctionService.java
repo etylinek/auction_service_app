@@ -41,10 +41,7 @@ public class AuctionService {
        return auctionRepository.findByUserModel(user);
 //        return List.of();
     }
-    public List<BiddingModel> getBiddingsByUser(UserModel user){
-        return biddingRepository.findByUserModel(user);
- //       return List.of();
-    }
+
     public List<AuctionObservationModel> getObservedAuctionsByUser(UserModel user){
          return auctionObservationRepository.findByUserModel(user);
  //       return List.of();

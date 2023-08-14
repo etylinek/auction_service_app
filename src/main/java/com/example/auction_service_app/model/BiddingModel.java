@@ -1,12 +1,16 @@
 package com.example.auction_service_app.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.NumberFormat;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -29,6 +33,11 @@ public class BiddingModel {
     private UserModel userModel;
 
     @Column(name = "bidding_value")
+    @NotNull // walidacja, nie może być zerowe
+    @NumberFormat
     private BigDecimal value;
+
+    @Column(name = "bid_time")
+    private LocalDateTime bidTime;
 
 }
