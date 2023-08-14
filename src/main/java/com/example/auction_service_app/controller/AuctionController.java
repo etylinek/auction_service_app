@@ -54,7 +54,7 @@ public class AuctionController {
     public RedirectView postAuction(AuctionModel auction) {
         categoryService.setAuctionToCategory(auction);
         auctionService.addAuction(auction);
-        return new RedirectView("/auctions/addAuction");
+        return new RedirectView("/auctions/");
 
     }
 
