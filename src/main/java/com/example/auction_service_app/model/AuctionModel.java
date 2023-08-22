@@ -35,7 +35,6 @@ public class AuctionModel {
     private AuctionObservationModel auctionObservationModel;
 
 
-
     //List<STring> images czy wrzucić do innej tabeli?
 
     @Column(name = "name")

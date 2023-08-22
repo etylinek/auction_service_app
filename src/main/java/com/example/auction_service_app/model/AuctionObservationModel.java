@@ -25,8 +25,7 @@ public class AuctionObservationModel {
 
     @OneToOne
     private UserModel userModel;
-     // pomysl jest taki, zeby kazda aukcja miala swoja obserwacje, natomiast wielu userow moze byc polaczonych z dana obserwacja
-    //   @JoinColumn(name = "user_id")//, nullable = false
+
 
 
 }
