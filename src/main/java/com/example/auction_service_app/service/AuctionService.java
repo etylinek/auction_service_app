@@ -46,10 +46,10 @@ public class AuctionService {
 //        return List.of();
     }
 
-    public List<AuctionObservationModel> getObservedAuctionsByUser(UserModel user){
-         return auctionObservationRepository.findByUserModel(user);
- //       return List.of();
-    }
+//    public List<AuctionObservationModel> getObservedAuctionsByUser(UserModel user){
+//         return auctionObservationRepository.findByUserModel(user);
+// //       return List.of();
+//    }
 
     public void addAuction(AuctionModel auction){
         auctionRepository.save(auction);

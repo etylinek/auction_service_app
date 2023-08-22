@@ -10,5 +10,5 @@ import java.util.List;
 
 @Repository
 public interface AuctionObservationRepository extends JpaRepository<AuctionObservationModel, Long> {
-    List<AuctionObservationModel> findByUserModel(UserModel user);
+    AuctionObservationModel findByUserModel(UserModel user);
 }

@@ -32,6 +32,12 @@ public class AuctionController {
         model.addAttribute("auctions", auctions);
         return "auctions/listAuctions"; // zwraca nazwę widoku, np. "auctions.html"
     }
+//    @GetMapping("/")
+//    public String getObservedAuctions(Model model, User user) {
+//        List<AuctionModel> auctions = auctionService.getObservedAuctions(user);
+//        model.addAttribute("auctions", auctions);
+//        return "auctions/listObservedAuctions"; // zwraca nazwę widoku, np. "auctions.html"
+//    }
 
     @GetMapping("/all")
     public String getAllAuctions(Model model) {
