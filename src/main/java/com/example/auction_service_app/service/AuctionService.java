@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -30,13 +32,15 @@ public class AuctionService {
     public  AuctionModel getAuctionById(Long id){
         return auctionRepository.findById(id).orElse(null);
     }
+
     public List<AuctionModel> getAllAuctions() {
         return auctionRepository.findAll();
     }
 
     public List<AuctionModel> getAllActiveAuctions(){
-        return auctionRepository.findAllByAuctionStatusType(AuctionStatusType.ACTIVE);
+        return auctionRepository.findAllByAuctionStatusType(AuctionStatusType.ACTIVE).stream().sorted(Comparator.comparing(AuctionModel::isPromoted).reversed()).collect(Collectors.toList());
     }
+
     public List<AuctionModel> getAuctionsByUser(UserModel user) { // 1.4 Prezentacja listy aukcji (zalogowanego) usera
        return auctionRepository.findByUserModel(user);
 //        return List.of();
@@ -51,7 +55,6 @@ public class AuctionService {
         auctionRepository.save(auction);
     }
 
-
     public void deleteAuction(Long id) {
         auctionRepository.deleteById(id);
     }
@@ -60,6 +63,7 @@ public class AuctionService {
         // Tu logika do wyszukiwania aukcji na podstawie nazwy aukcji.
         return auctionRepository.findByNameContainingIgnoreCase(name);
     }
+
     public List<AuctionModel> getAuctionsByCategory(CategoryModel categoryModel) {
         // Tu logika do wyszukiwania aukcji na podstawie kategorii.
         return auctionRepository.findByCategoryModel(categoryModel);
