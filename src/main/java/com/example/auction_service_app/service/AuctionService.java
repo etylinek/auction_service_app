@@ -69,7 +69,12 @@ public class AuctionService {
         return auctionRepository.findByCategoryModel(categoryModel);
     }
 
-
+    public void buyAuctionWithBuyNowButton(AuctionModel auction) {
+        if (auction.getAuctionStatusType() == AuctionStatusType.ACTIVE) {
+            auction.setAuctionStatusType(AuctionStatusType.SOLD);
+            auctionRepository.save(auction);
+        }
+    }
 
     /*public List<AuctionModel> getAuctionsByUser(UserModel user) { //opcjonalna metoda do znajdywania użytkownika po statusie zalogowania
         if (user.getAccountStatus() != AccountStatus.ACTIVE) {
