@@ -138,9 +138,9 @@ public class AuctionController {
     }
 
     @ModelAttribute("currentUser")
-    public UserModel getCurrentUser(Principal principal) {
+    public UserModel getCurrentUser(UserModel userModel) {
         // zakładając, że nazwa użytkownika (login) jest używana jako "principal" w kontekście Spring Security
-        return userService.findByAccountName(principal.getName());
+        return userService.findByAccountName(userModel.getAccountName());
     }
 }
 
