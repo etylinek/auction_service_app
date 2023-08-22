@@ -23,12 +23,10 @@ public class UserService {
         userRepository.save(editUser);
     }
 
-
-
-
-
-
-
+        public UserModel findByAccountName(String accountName) {
+            return userRepository.findByAccountName(accountName).orElse(null);
+                 //   .orElseThrow(() -> new UsernameNotFoundException("Użytkownik o podanej nazwie konta nie został znaleziony: " + accountName));
+        }
 
 
 
