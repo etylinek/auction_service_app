@@ -6,14 +6,17 @@ import com.example.auction_service_app.model.UserModel;
 import com.example.auction_service_app.service.AuctionService;
 import com.example.auction_service_app.service.BiddingService;
 import com.example.auction_service_app.service.CategoryService;
+import com.example.auction_service_app.service.UserService;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.math.BigDecimal;
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -24,6 +27,7 @@ public class AuctionController {
     private final AuctionService auctionService;
     private final CategoryService categoryService;
     private final BiddingService biddingService;
+    private final UserService userService;
 
 
     @GetMapping("/")
@@ -109,5 +113,35 @@ public class AuctionController {
         return "auctions/listAuctions"; // zwraca ten sam widok, co wyszukiwanie, ale tym razem na podstawie kategorii
     }
 
+    @GetMapping("/placeBid")
+    public String showPlaceBidForm(Model model, @RequestParam("auctionId") Long auctionId) {
+        model.addAttribute("auctionId", auctionId);
+        return "auctions/placeBid";  // zwraca widok formularza do składania ofert
+    }
 
+    @PostMapping("/placeBid")
+    public String placeBid(
+            @RequestParam("auctionId") Long auctionId,
+            @RequestParam("proposedValue") BigDecimal proposedValue,
+            @RequestParam(name = "userId", required = false) Long userId,  // userId można uzyskać również z kontekstu sesji lub zabezpieczeń, zamiast przekazywać go jako parametr
+            RedirectAttributes redirectAttributes) {
+
+        boolean success = biddingService.placeBid(auctionId, proposedValue, userId);
+
+        if (success) {
+            redirectAttributes.addFlashAttribute("successMessage", "Twoja oferta została pomyślnie złożona.");
+        } else {
+            redirectAttributes.addFlashAttribute("errorMessage", "Nie udało się złożyć oferty. Sprawdź wprowadzone dane i spróbuj ponownie.");
+        }
+
+        return "redirect:/auctions/placeBid?auctionId=" + auctionId;  // przekierowuje z powrotem do formularza licytacji z komunikatem o powodzeniu lub niepowodzeniu
+    }
+
+    @ModelAttribute("currentUser")
+    public UserModel getCurrentUser(Principal principal) {
+        // zakładając, że nazwa użytkownika (login) jest używana jako "principal" w kontekście Spring Security
+        return userService.findByAccountName(principal.getName());
+    }
 }
+
+
