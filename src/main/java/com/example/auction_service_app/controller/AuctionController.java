@@ -74,9 +74,9 @@ public class AuctionController {
         return new RedirectView("/auctions/addAuction");
     }*/
 
-        return new RedirectView("/auctions/");
-
-    }
+//        return new RedirectView("/auctions/");
+//
+//    }
 
 
 

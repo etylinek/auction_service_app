@@ -33,7 +33,8 @@
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
                     <h1 class=" m-0 font-weight-bold text-primary">${user.accountName}</h1>
-                    <h5 class=" m-0  text-primary">email: ${user.email} - utworzono: ${user.accountCreationDate}</h5>
+                    <h5 class=" m-0  text-primary">email: ${user.email} <br>
+                        konto utworzono:  <fmt:formatDate type="date" value = "${user.accountCreationDate}" /></h5></h5>
                 </div>
 
                 <div class="row">
@@ -112,7 +113,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-success">Edytuj</button>
+                            <button type="submit" class="btn btn-success">Zapisz</button>
                         </form>
                     </div>
 
