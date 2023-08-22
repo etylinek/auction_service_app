@@ -17,9 +17,20 @@ import java.util.Date;
 @AllArgsConstructor
 @Table(name = "users")
 public class UserModel {
+
+
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @OneToOne
+    private AuctionObservationModel auctionObservationModel;
+
+
+
+
 
     @Column(name = "email", unique = true)
     private String email;

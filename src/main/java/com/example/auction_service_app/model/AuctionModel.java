@@ -31,6 +31,11 @@ public class AuctionModel {
     @OneToOne
     private UserModel userModel;
 
+    @ManyToOne
+    private AuctionObservationModel auctionObservationModel;
+
+
+
     //List<STring> images czy wrzucić do innej tabeli?
 
     @Column(name = "name")
