@@ -7,16 +7,25 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.security.Principal;
 
 @Service
 @RequiredArgsConstructor
 public class UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public void addUser(UserModel user){
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
+    }
+
+    public UserModel getUserByPrincipal(Principal principal) {
+        return userRepository.findByAccountNameEquals(principal.getName());
     }
 
     public UserModel getUserById(Long id) {
@@ -24,6 +33,7 @@ public class UserService {
     }
 
     public void editUser(UserModel editUser) {
+        editUser.setPassword(passwordEncoder.encode(editUser.getPassword()));
         userRepository.save(editUser);
     }
 

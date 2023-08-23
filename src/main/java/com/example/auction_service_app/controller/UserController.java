@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.security.Principal;
+
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/users")
@@ -19,24 +21,25 @@ public class UserController {
 
 
 
-    @GetMapping("/showUser/{id}")
-    public String getShowUser(@PathVariable Long id, Model model) {
-        UserModel userById = userService.getUserById(id);
+    @GetMapping("/showUser/")
+    public String getShowUser(Principal principal, Model model) {
+
+        UserModel userById = userService.getUserByPrincipal(principal);
         model.addAttribute("user", userById);
         return "users/detailsUser";
     }
 
-    @GetMapping("/editUser/{id}")
-    public String getEditUser(@PathVariable Long id, Model model) {
-        UserModel userById = userService.getUserById(id);
+    @GetMapping("/editUser/")
+    public String getEditUser(Principal principal, Model model) {
+        UserModel userById = userService.getUserByPrincipal(principal);
         model.addAttribute("user", userById);
         return "users/editUser";
     }
 
-    @PostMapping("/editUser/{id}")
+    @PostMapping("/editUser/")
     public RedirectView postEditUser(UserModel editUser) {
         userService.editUser(editUser);
-        return new RedirectView("../showUser/{id}");
+        return new RedirectView("../showUser/");
     }
 
 
