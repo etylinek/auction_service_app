@@ -34,7 +34,7 @@ public class UserModel {
 
 
 
-    @Column(name = "email", unique = true)
+    @Column(name = "email")
     private String email;
     @Column(name = "password")
     private String password;
@@ -53,6 +53,6 @@ public class UserModel {
 
     @Column(name = "account_status", nullable = false)
     @Enumerated(EnumType.STRING)
-    private AccountStatusType accountStatusType = AccountStatusType.INACTIVE; // domyślny status konta usera
+    private AccountStatusType accountStatusType = AccountStatusType.ACTIVE; // domyślny status konta usera
 
 }
