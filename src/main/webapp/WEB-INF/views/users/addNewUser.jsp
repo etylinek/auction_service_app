@@ -30,7 +30,7 @@
 
 
             <div class="container-fluid">
-                <form method="post" action='<c:url value="/users/"/>'>
+                <form method="post" action='<c:url value="/users/add"/>'>
                 <div class="row">
                     <div class="col-12">
 

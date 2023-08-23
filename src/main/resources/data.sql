@@ -6,7 +6,7 @@ INSERT INTO category_model (name, description) VALUES ('AGD', 'Kuchenki/zmywarki
 
 
 
-INSERT INTO users (email, password, account_name, voievodeship, city, address, account_creation_date, account_status) VALUES ('jacek@o2.pl', 'password', 'Jacula', 'małopolskie', 'Katowice', 'ul. Pianki', '2023-05-01 12:15', 'INACTIVE');
+INSERT INTO users (email, password, account_name, voievodeship, city, address, account_creation_date, account_status) VALUES ('jacek@o2.pl', '$2a$10$3A0styUycYGDi4MaL/iZvO7OfKhNp3cZHRVOIKJdSSfT1Du8u2GIm', 'Jacula', 'małopolskie', 'Katowice', 'ul. Pianki', '2023-05-01 12:15', 'INACTIVE');
 INSERT INTO users (email, password, account_name, voievodeship, city, address, account_creation_date, account_status) VALUES ('bartek@o2.pl', 'password2', 'Grzmot', 'zachodniopomorskie', 'Szczecin', 'ul. Witelona', '2022-08-23 17:15', 'ACTIVE');
 
 

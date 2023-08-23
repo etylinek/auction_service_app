@@ -1,8 +1,12 @@
 package com.example.auction_service_app.service;
 
+import com.example.auction_service_app.dao.LoginUserPrincipal;
 import com.example.auction_service_app.model.UserModel;
 import com.example.auction_service_app.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,10 +27,12 @@ public class UserService {
         userRepository.save(editUser);
     }
 
+
         public UserModel findByAccountName(String accountName) {
             return userRepository.findByAccountName(accountName).orElse(null);
                  //   .orElseThrow(() -> new UsernameNotFoundException("Użytkownik o podanej nazwie konta nie został znaleziony: " + accountName));
         }
+
 
 
 

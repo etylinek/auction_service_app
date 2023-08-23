@@ -33,6 +33,7 @@ public class AuctionController {
     @GetMapping("/")
     public String getAllActiveAuctions(Model model) {
         List<AuctionModel> auctions = auctionService.getAllActiveAuctions();
+        //  System.out.println(principal.getName());
         model.addAttribute("auctions", auctions);
         return "auctions/listAuctions"; // zwraca nazwę widoku, np. "auctions.html"
     }
