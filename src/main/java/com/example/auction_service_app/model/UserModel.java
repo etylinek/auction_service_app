@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.Date;
 
@@ -19,6 +20,9 @@ import java.util.Date;
 public class UserModel {
 
 
+//    public static void main(String[] args) {
+//        System.out.println(new BCryptPasswordEncoder().encode("password"));
+//    }
 
 
     @Id
@@ -27,8 +31,6 @@ public class UserModel {
 
     @OneToOne
     private AuctionObservationModel auctionObservationModel;
-
-
 
 
 
