@@ -61,17 +61,12 @@ public class AuctionController {
         return "auctions/addNewAuction";
     }
     @PostMapping("/addAuction")
+
     public RedirectView postAuction(AuctionModel auction, Principal principal) {
-        if (auction.getMinValue() != null && auction.getMinValue().compareTo(BigDecimal.ZERO) > 0) {
-            // to jest licytacja
-            categoryService.setAuctionToCategory(auction);
-            biddingService.addBidding(auction);
-        } else {
-            // to jest zwykła aukcja
-            categoryService.setAuctionToCategory(auction);
-            auctionService.addAuction(auction, principal);
-        }
-        return new RedirectView("/auctions/");
+
+        auctionService.processAuction(auction, principal);
+        return new RedirectView("/auctions/addAuction");
+
     }
 
 /*    @PostMapping("/addAuction")
