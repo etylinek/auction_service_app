@@ -31,6 +31,9 @@ public class AuctionModel {
     @OneToOne
     private UserModel userModel;
 
+    @OneToOne
+    private UserModel buyer;
+
     @ManyToOne
     private AuctionObservationModel auctionObservationModel;
 

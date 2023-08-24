@@ -52,9 +52,11 @@
                             <div class="card-body">
 
                                Cena: ${singleAuction.buyNowValue}
+                                <form method="post" action='<c:url value="/auctions/auctionDetails/${singleAuction.id}"/>'>
                                 <button class="btn btn-danger" type="submit">
                                     <i> Kup Teraz! </i>
                                 </button>
+                                </form>
 
                             </div>
                         </div>

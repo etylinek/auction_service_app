@@ -27,8 +27,10 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="<c:url value="/auctions/"/>">Lista</a>
-                <a class="collapse-item" href="<c:url value="/auctions/addAuction"/>">Dodaj</a>
                 <a class="collapse-item" href="<c:url value="/categories/"/>">Kategorie</a>
+                <a class="collapse-item" href="<c:url value="/auctions/my"/>">Moje Aukcje</a>
+                <a class="collapse-item" href="<c:url value="/auctions/addAuction"/>">Dodaj</a>
+
 
             </div>
         </div>
