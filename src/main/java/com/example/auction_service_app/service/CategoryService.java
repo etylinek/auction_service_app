@@ -6,6 +6,7 @@ import com.example.auction_service_app.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.List;
 
 @Service
@@ -30,8 +31,5 @@ public class CategoryService {
 
         List<AuctionModel> auctionlList = getCategoryById(auctionToAdd.getCategoryModel().getId()).getAuctions();
         auctionlList.add(auctionToAdd);
-
     }
-
-
 }

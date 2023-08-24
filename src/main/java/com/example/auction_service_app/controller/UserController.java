@@ -23,7 +23,6 @@ public class UserController {
 
     @GetMapping("/showUser/")
     public String getShowUser(Principal principal, Model model) {
-
         UserModel userById = userService.getUserByPrincipal(principal);
         model.addAttribute("user", userById);
         return "users/detailsUser";

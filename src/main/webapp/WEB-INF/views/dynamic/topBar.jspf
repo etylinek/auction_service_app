@@ -183,7 +183,11 @@
                 <a class="dropdown-item"  href="<c:url value="/users/showUser/"/>">
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                     Wyswietl konto
-<%--                </a>--%>
+                </a>
+                <a class="dropdown-item"  href="<c:url value="/auctions/my"/>">
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Wyswietl moje aukcje
+                </a>
 <%--                <a class="dropdown-item" href="<c:url value="/users/editUser/"/>">--%>
 <%--                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>--%>
 <%--                    Edytuj--%>
