@@ -65,15 +65,7 @@ private final LoginUserDetailsService loginUserDetailsService;
     }
     @PostMapping("/addAuction")
     public RedirectView postAuction(AuctionModel auction) {
-        if (auction.getMinValue() != null && auction.getMinValue().compareTo(BigDecimal.ZERO) > 0) {
-            // to jest licytacja
-            categoryService.setAuctionToCategory(auction);
-            biddingService.addBidding(auction);
-        } else {
-            // to jest zwykła aukcja
-            categoryService.setAuctionToCategory(auction);
-            auctionService.addAuction(auction);
-        }
+        auctionService.processAuction(auction);
         return new RedirectView("/auctions/addAuction");
     }
 
