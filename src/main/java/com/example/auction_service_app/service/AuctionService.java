@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -27,6 +28,10 @@ public class AuctionService {
     private final CategoryRepository categoryRepository;
 
     private final BiddingRepository biddingRepository;
+
+    private final BiddingService biddingService;
+
+    private final CategoryService categoryService;
 
 
     public  AuctionModel getAuctionById(Long id){
@@ -73,6 +78,18 @@ public class AuctionService {
         if (auction.getAuctionStatusType() == AuctionStatusType.ACTIVE) {
             auction.setAuctionStatusType(AuctionStatusType.SOLD);
             auctionRepository.save(auction);
+        }
+    }
+
+    public void processAuction(AuctionModel auction) {
+        if (auction.getMinValue() != null && auction.getMinValue().compareTo(BigDecimal.ZERO) > 0) {
+            // to jest licytacja
+            categoryService.setAuctionToCategory(auction);
+            biddingService.addBidding(auction);
+        } else {
+            // to jest zwykła aukcja
+            categoryService.setAuctionToCategory(auction);
+            addAuction(auction);
         }
     }
 
