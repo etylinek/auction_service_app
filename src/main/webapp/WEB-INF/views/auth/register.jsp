@@ -78,6 +78,7 @@
 <%--                            <div class="text-center">--%>
 <%--                                <a class="small" href="../forgot-password.html">Forgot Password?</a>--%>
 <%--                            </div>--%>
+                            <hr>
                             <div class="text-center">
                                 <a class="small" href="<c:url value="../login/"/>">Masz już konto? Zaloguj się!</a>
                             </div>

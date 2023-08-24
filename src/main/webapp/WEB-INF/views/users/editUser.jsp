@@ -60,7 +60,7 @@
                     </div>
 
                     <div class="container-fluid">
-                        <form method="post" action='<c:url value="/users/editUser/${user.id}"/>'>
+                        <form method="post" action='<c:url value="/users/editUser/"/>'>
                             <div class="row">
                                 <div class="col-12">
 
@@ -75,10 +75,10 @@
                                             </div>
 
 
-                                            <div class="form-group row">
-                                                <label class="col-2 col-form-label">Hasło</label>
-                                                <input class="col-10 form-control" name="password" type="text" placeholder="wpisz hasło">
-                                            </div>
+<%--                                            <div class="form-group row">--%>
+<%--                                                <label class="col-2 col-form-label">Hasło</label>--%>
+<%--                                                <input class="col-10 form-control" name="password" type="text" placeholder="wpisz hasło">--%>
+<%--                                            </div>--%>
 
                                             <div class="form-group row">
                                                 <label class="col-2 col-form-label">E-mail</label>

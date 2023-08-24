@@ -33,7 +33,7 @@ public class UserService {
     }
 
     public void editUser(UserModel editUser) {
-        editUser.setPassword(passwordEncoder.encode(editUser.getPassword()));
+        //editUser.setPassword(passwordEncoder.encode(editUser.getPassword()));
         userRepository.save(editUser);
     }
 
