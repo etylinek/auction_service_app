@@ -1,12 +1,10 @@
 package com.example.auction_service_app.controller;
 
+import com.example.auction_service_app.dao.LoginUserPrincipal;
 import com.example.auction_service_app.model.AuctionModel;
 import com.example.auction_service_app.model.CategoryModel;
 import com.example.auction_service_app.model.UserModel;
-import com.example.auction_service_app.service.AuctionService;
-import com.example.auction_service_app.service.BiddingService;
-import com.example.auction_service_app.service.CategoryService;
-import com.example.auction_service_app.service.UserService;
+import com.example.auction_service_app.service.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -28,12 +26,14 @@ public class AuctionController {
     private final CategoryService categoryService;
     private final BiddingService biddingService;
     private final UserService userService;
-
+private final LoginUserDetailsService loginUserDetailsService;
 
     @GetMapping("/")
     public String getAllActiveAuctions(Model model) {
         List<AuctionModel> auctions = auctionService.getAllActiveAuctions();
-        //  System.out.println(principal.getName());
+        //System.out.println(principal.getName());
+       //System.out.println(loginUserPrincipal.getUsername());
+       // System.out.println(loginUserDetailsService.loadUserByUsername());
         model.addAttribute("auctions", auctions);
         return "auctions/listAuctions"; // zwraca nazwę widoku, np. "auctions.html"
     }
