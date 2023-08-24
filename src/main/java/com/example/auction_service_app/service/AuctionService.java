@@ -144,4 +144,24 @@ public class AuctionService {
                 .collect(Collectors.toList());
 
     }
+
+
+    public List<AuctionModel> getAuctionsByCity(String city) {
+        return getAllActiveAuctions().stream()
+                .filter(auction -> auction.getUserModel().getCity().equalsIgnoreCase(city))
+                .collect(Collectors.toList());
+    }
+
+    public List<AuctionModel> getAuctionsByVoievodeship(String voievodeship) {
+        return getAllActiveAuctions().stream()
+                .filter(auction -> auction.getUserModel().getVoievodeship().equalsIgnoreCase(voievodeship))
+                .collect(Collectors.toList());
+    }
+
+    public List<AuctionModel> getAuctionsByBuyNowValue(BigDecimal buyNowValue) {
+        return getAllActiveAuctions().stream()
+                .filter(auction -> auction.getBuyNowValue().compareTo(buyNowValue) >= 0)
+                .collect(Collectors.toList());
+    }
+
 }
