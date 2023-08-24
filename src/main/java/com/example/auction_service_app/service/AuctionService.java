@@ -1,15 +1,14 @@
 package com.example.auction_service_app.service;
 
 import com.example.auction_service_app.model.*;
-import com.example.auction_service_app.repository.AuctionObservationRepository;
-import com.example.auction_service_app.repository.AuctionRepository;
-import com.example.auction_service_app.repository.BiddingRepository;
-import com.example.auction_service_app.repository.CategoryRepository;
+import com.example.auction_service_app.repository.*;
 import com.example.auction_service_app.types.AuctionStatusType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -19,6 +18,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class AuctionService {
 
+    private final UserRepository userRepository;
 
     private final AuctionRepository auctionRepository;
 
@@ -29,7 +29,7 @@ public class AuctionService {
     private final BiddingRepository biddingRepository;
 
 
-    public  AuctionModel getAuctionById(Long id){
+    public AuctionModel getAuctionById(Long id) {
         return auctionRepository.findById(id).orElse(null);
     }
 
@@ -37,12 +37,12 @@ public class AuctionService {
         return auctionRepository.findAll();
     }
 
-    public List<AuctionModel> getAllActiveAuctions(){
+    public List<AuctionModel> getAllActiveAuctions() {
         return auctionRepository.findAllByAuctionStatusType(AuctionStatusType.ACTIVE).stream().sorted(Comparator.comparing(AuctionModel::isPromoted).reversed()).collect(Collectors.toList());
     }
 
     public List<AuctionModel> getAuctionsByUser(UserModel user) { // 1.4 Prezentacja listy aukcji (zalogowanego) usera
-       return auctionRepository.findByUserModel(user);
+        return auctionRepository.findByUserModel(user);
 //        return List.of();
     }
 
@@ -51,7 +51,8 @@ public class AuctionService {
 // //       return List.of();
 //    }
 
-    public void addAuction(AuctionModel auction){
+    public void addAuction(AuctionModel auction, Principal principal) {
+        auction.setUserModel(userRepository.findByAccountNameEquals(principal.getName()));
         auctionRepository.save(auction);
     }
 
@@ -112,4 +113,13 @@ public class AuctionService {
         AuctionModel existingAuction = getAuctionById(id);
         auctionRepository.delete(existingAuction);
     }*/
+
+    public List<AuctionModel> getAllUserAuctions(Principal principal) {
+
+        return auctionRepository.findAllByAuctionStatusType(AuctionStatusType.ACTIVE)
+                .stream()
+                .filter(a -> a.getUserModel().getId().equals(userRepository.findByAccountNameEquals(principal.getName()).getId()))
+                .collect(Collectors.toList());
+
+    }
 }

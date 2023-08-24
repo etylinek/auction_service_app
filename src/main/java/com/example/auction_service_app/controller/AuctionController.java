@@ -26,14 +26,11 @@ public class AuctionController {
     private final CategoryService categoryService;
     private final BiddingService biddingService;
     private final UserService userService;
-private final LoginUserDetailsService loginUserDetailsService;
 
     @GetMapping("/")
     public String getAllActiveAuctions(Model model) {
         List<AuctionModel> auctions = auctionService.getAllActiveAuctions();
-        //System.out.println(principal.getName());
-       //System.out.println(loginUserPrincipal.getUsername());
-       // System.out.println(loginUserDetailsService.loadUserByUsername());
+
         model.addAttribute("auctions", auctions);
         return "auctions/listAuctions"; // zwraca nazwę widoku, np. "auctions.html"
     }
@@ -64,7 +61,7 @@ private final LoginUserDetailsService loginUserDetailsService;
         return "auctions/addNewAuction";
     }
     @PostMapping("/addAuction")
-    public RedirectView postAuction(AuctionModel auction) {
+    public RedirectView postAuction(AuctionModel auction, Principal principal) {
         if (auction.getMinValue() != null && auction.getMinValue().compareTo(BigDecimal.ZERO) > 0) {
             // to jest licytacja
             categoryService.setAuctionToCategory(auction);
@@ -72,9 +69,9 @@ private final LoginUserDetailsService loginUserDetailsService;
         } else {
             // to jest zwykła aukcja
             categoryService.setAuctionToCategory(auction);
-            auctionService.addAuction(auction);
+            auctionService.addAuction(auction, principal);
         }
-        return new RedirectView("/auctions/addAuction");
+        return new RedirectView("/auctions/");
     }
 
 /*    @PostMapping("/addAuction")
@@ -143,6 +140,15 @@ private final LoginUserDetailsService loginUserDetailsService;
         // zakładając, że nazwa użytkownika (login) jest używana jako "principal" w kontekście Spring Security
         return userService.findByAccountName(userModel.getAccountName());
     }
+
+    @GetMapping("/my")
+    public String getAllUserAuctions(Model model, Principal principal) {
+        List<AuctionModel> auctions = auctionService.getAllUserAuctions(principal);
+        model.addAttribute("auctions", auctions);
+        return "auctions/listAuctions"; // zwraca nazwę widoku, np. "auctions.html"
+    }
+
+
 }
 
 

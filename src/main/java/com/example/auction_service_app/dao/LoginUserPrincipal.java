@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 
-@Component
+
 @RequiredArgsConstructor
 public class LoginUserPrincipal implements UserDetails {
 
