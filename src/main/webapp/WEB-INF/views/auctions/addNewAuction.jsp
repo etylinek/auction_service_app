@@ -77,7 +77,7 @@
                                     <input class="col-2 form-control" type="date" name="endDate">
 
                                     <label class="col-2 col-form-label">Promuj aukcje</label>
-                                    <input class="col-1 form-control" type="checkbox" name="isPromoted" value="true">
+                                    <input class="col-1 form-control" type="checkbox" name="isPromoted" value=true>
 
 
                                 </div>

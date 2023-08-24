@@ -77,9 +77,11 @@ public class AuctionService {
         return auctionRepository.findByCategoryModel(categoryModel);
     }
 
-    public void buyAuctionWithBuyNowButton(AuctionModel auction) {
+    public void buyAuctionWithBuyNowButton(Long id, Principal principal) {
+        AuctionModel auction = getAuctionById(id);
         if (auction.getAuctionStatusType() == AuctionStatusType.ACTIVE) {
             auction.setAuctionStatusType(AuctionStatusType.SOLD);
+            auction.setBuyer(userRepository.findByAccountNameEquals(principal.getName()));
             auctionRepository.save(auction);
         }
     }

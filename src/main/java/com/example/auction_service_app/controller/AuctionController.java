@@ -143,6 +143,12 @@ public class AuctionController {
         return "auctions/listAuctions"; // zwraca nazwę widoku, np. "auctions.html"
     }
 
+    @PostMapping("/auctionDetails/{id}")
+    public String buyNow(@PathVariable Long id, Principal principal){
+        auctionService.buyAuctionWithBuyNowButton(id,principal);
+        return "auctions/listAuctions";
+    }
+
 
 }
 

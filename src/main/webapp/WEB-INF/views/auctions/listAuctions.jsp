@@ -65,8 +65,17 @@
                                 <a href='<c:url value="/auctions/auctionDetails/${example.id}"/>'>
                                     <div class="card-header py-3">
 
-                                        <h6 class="m-0 font-weight-bold text-primary">${example.name}</h6>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">${example.minValue}</div>
+                                        <h5 class="m-0 font-weight-bold text-primary">${example.name}
+                                            <c:choose>
+                                                <c:when test="${example.promoted==true}">
+                                                    <h6 align="right">Promowane!</h6>
+                                                </c:when>
+                                            </c:choose>
+                                        </h5>
+
+
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            Licytacja: ${example.minValue} <br> Kup Teraz!: ${example.buyNowValue}</div>
                                     </div>
 
                                     <div class="card-body">
