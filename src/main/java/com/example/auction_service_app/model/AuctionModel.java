@@ -12,6 +12,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 
 @AllArgsConstructor
@@ -58,12 +59,12 @@ public class AuctionModel {
 
     @Column(name = "start_date")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date startDate;
+    private LocalDate startDate = LocalDate.now();
 
     @Column(name = "end_date")
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date endDate;
+    private LocalDate endDate;
 
 
     @Column(name = "views")

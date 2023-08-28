@@ -146,6 +146,8 @@ public class AuctionService {
     }
 
 
+
+  //  public List
     public List<AuctionModel> getAuctionsByCity(String city) {
         return getAllActiveAuctions().stream()
                 .filter(auction -> auction.getUserModel().getCity().equalsIgnoreCase(city))

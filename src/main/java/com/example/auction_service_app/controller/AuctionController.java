@@ -65,7 +65,7 @@ public class AuctionController {
     public RedirectView postAuction(AuctionModel auction, Principal principal) {
 
         auctionService.processAuction(auction, principal);
-        return new RedirectView("/auctions/addAuction");
+        return new RedirectView("/auctions/listAuctions");
 
     }
 
@@ -148,6 +148,7 @@ public class AuctionController {
         auctionService.buyAuctionWithBuyNowButton(id,principal);
         return "auctions/listAuctions";
     }
+
 
 
 }
