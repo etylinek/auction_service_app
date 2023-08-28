@@ -164,4 +164,16 @@ public class AuctionService {
                 .collect(Collectors.toList());
     }
 
+    public List<AuctionModel> sortAllActiveAuctionsWithAddDate() {
+        return auctionRepository.findAllByAuctionStatusType(AuctionStatusType.ACTIVE).stream()
+                .sorted(Comparator.comparing(AuctionModel::getStartDate).reversed())
+                .collect(Collectors.toList());
+    }
+
+    public List<AuctionModel> sortAllActiveAuctionsWithEndDate() {
+        return auctionRepository.findAllByAuctionStatusType(AuctionStatusType.ACTIVE).stream()
+                .sorted(Comparator.comparing(AuctionModel::getEndDate).reversed())
+                .collect(Collectors.toList());
+    }
+
 }
