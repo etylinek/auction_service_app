@@ -1,12 +1,9 @@
 package com.example.auction_service_app.service;
 
-import com.example.auction_service_app.dao.LoginUserPrincipal;
+
 import com.example.auction_service_app.model.UserModel;
 import com.example.auction_service_app.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -43,31 +40,4 @@ public class UserService {
                  //   .orElseThrow(() -> new UsernameNotFoundException("Użytkownik o podanej nazwie konta nie został znaleziony: " + accountName));
         }
 
-
-
-
-
-//    @Autowired
-//    private AuctionRepository auctionRepository;
-//    @Autowired
-//    private BiddingRepository biddingRepository;
-//    @Autowired
-//    private AuctionObservationRepository auctionObservationRepository;
-
-
-
-/*    public List<AuctionModel> getAuctionsByUserEmail(String email) {
-        UserModel user = userRepository.findByEmail(email);
-        return auctionRepository.findByUser(user);
-    }*/
-
-/*    public List<Bidding> getBiddingsByUserEmail(String email) {
-        UserModel user = userRepository.findByEmail(email);
-        return biddingRepository.findByUser(user);
-    }*/
-
-/*    public List<AuctionObservation> getObservedAuctionsByUserEmail(String email) {
-        UserModel user = userRepository.findByEmail(email);
-        return auctionObservationRepository.findByUser(user);
-    }*/
 }

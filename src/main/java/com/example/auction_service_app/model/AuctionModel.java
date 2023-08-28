@@ -2,7 +2,6 @@ package com.example.auction_service_app.model;
 
 import javax.persistence.*;
 
-import com.example.auction_service_app.types.AccountStatusType;
 import com.example.auction_service_app.types.AuctionStatusType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,7 +12,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Date;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
