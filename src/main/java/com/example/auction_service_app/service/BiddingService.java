@@ -1,7 +1,6 @@
 package com.example.auction_service_app.service;
 
-import com.example.auction_service_app.dto.BidRequest;
-import com.example.auction_service_app.exception.BidTooLowException;
+
 import com.example.auction_service_app.model.AuctionModel;
 import com.example.auction_service_app.model.BiddingModel;
 import com.example.auction_service_app.model.UserModel;
@@ -11,12 +10,11 @@ import com.example.auction_service_app.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
-import javax.transaction.Transactional;
 import java.math.BigDecimal;
+import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
 @RequiredArgsConstructor
@@ -28,41 +26,40 @@ public class BiddingService {
 
     private final UserRepository userRepository;  // zakładając, że posiadasz odpowiednie repozytorium użytkowników
 
-    public List<BiddingModel> getBiddingsByUser(UserModel user){
+    public List<BiddingModel> getBiddingsByUser(UserModel user) {
         return biddingRepository.findByUserModel(user);
     }
 
 
-    public void addBidding(AuctionModel auction){
+    public void addBidding(AuctionModel auction) {
         auctionRepository.save(auction);
     }
 
-    public boolean placeBid(Long auctionId, BigDecimal proposedValue, Long userId) {
-        Optional<AuctionModel> auctionOpt = auctionRepository.findById(auctionId);
-        Optional<UserModel> userOpt = userRepository.findById(userId);
 
-        if (!auctionOpt.isPresent() || !userOpt.isPresent()) {
+    public boolean placeNewBid(Long auctionId, Long proposedValue, Long userId) {
+        AuctionModel auction = auctionRepository.findById(auctionId).orElse(null);
+        UserModel user = userRepository.findById(userId).orElse(null);
+
+        if (auction == null || user == null || proposedValue == null) {
             // aukcja lub użytkownik nie istnieją
             return false;
         }
 
-        AuctionModel auction = auctionOpt.get();
-        UserModel user = userOpt.get();
-
+        BigDecimal bigDecimal = BigDecimal.valueOf(proposedValue);
         // sprawdzenie, czy zaproponowana kwota jest wyższa niż aktualna minimalna wartość
-        if (proposedValue.compareTo(auction.getMinValue()) <= 0) {
+        if (bigDecimal.compareTo(auction.getMinValue()) <= 0) {
             return false;  // oferta jest zbyt niska
         }
 
         // aktualizacja ceny minimalnej w aukcji
-        auction.setMinValue(proposedValue);
-       // auctionRepository.save(auction);
+        auction.setMinValue(bigDecimal);
+        // auctionRepository.save(auction);
 
         // dodanie nowego rekordu w historii licytacji
         BiddingModel newBid = new BiddingModel();
         newBid.setAuction(auction);
         newBid.setUserModel(user);
-        newBid.setValue(proposedValue);
+        newBid.setValue(bigDecimal);
         newBid.setBidTime(LocalDateTime.now());  // zakładam, że używasz `java.time.LocalDateTime`
         biddingRepository.save(newBid);
 
@@ -70,6 +67,15 @@ public class BiddingService {
     }
 
 
+    public String placeBid(Long auctionId, Long proposedValue, Principal principal) {
+
+        Long userId = userRepository.findByAccountName(principal.getName()).orElse(null).getId();
+
+        if (placeNewBid(auctionId, proposedValue, userId)) {
+            return "bid/bidGoodWay";
+        }
+        return "bid/bidWrongWay";
+    }
 
 
 

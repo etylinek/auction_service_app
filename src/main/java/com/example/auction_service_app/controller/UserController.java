@@ -17,10 +17,6 @@ public class UserController {
 
     private final UserService userService;
 
-
-
-
-
     @GetMapping("/showUser/")
     public String getShowUser(Principal principal, Model model) {
         UserModel userById = userService.getUserByPrincipal(principal);
@@ -42,26 +38,4 @@ public class UserController {
     }
 
 
-
-
-
-   /* @GetMapping("/{id}")
-    public UserModel getUserById(@PathVariable Long id) {
-        return userService.getUserById(id);
-    }*/
-
-  /*  @GetMapping("/my-auctions")
-    public List<AuctionModel> getUserAuctions(Principal principal) {
-        return userService.getAuctionsByUserEmail(principal.getName());
-    }*/
-
- /*   @GetMapping("/my-biddings")
-    public List<Bidding> getUserBiddings(Principal principal) {
-        return userService.getBiddingsByUserEmail(principal.getName());
-    }*/
-
- /*   @GetMapping("/observed-auctions")
-    public List<AuctionObservation> getObservedAuctions(Principal principal) {
-        return userService.getObservedAuctionsByUserEmail(principal.getName());
-    }*/
 }

@@ -72,7 +72,8 @@
                                                 </c:when>
                                             </c:choose>
                                         </h5>
-
+                                        <div class="h5 mb-0 text-gray-800">
+                                            Data rozpoczecia: ${example.startDate} <br>Data zakonczenia: ${example.endDate}</div>
 
                                         <div class="h5 mb-0 font-weight-bold text-gray-800">
                                             Licytacja: ${example.minValue} <br> Kup Teraz!: ${example.buyNowValue}</div>

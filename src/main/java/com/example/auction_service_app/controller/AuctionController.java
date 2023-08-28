@@ -1,19 +1,16 @@
 package com.example.auction_service_app.controller;
 
-import com.example.auction_service_app.dao.LoginUserPrincipal;
 import com.example.auction_service_app.model.AuctionModel;
 import com.example.auction_service_app.model.CategoryModel;
 import com.example.auction_service_app.model.UserModel;
 import com.example.auction_service_app.service.*;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.math.BigDecimal;
+
 import java.security.Principal;
 import java.util.List;
 
@@ -34,12 +31,6 @@ public class AuctionController {
         model.addAttribute("auctions", auctions);
         return "auctions/listAuctions"; // zwraca nazwę widoku, np. "auctions.html"
     }
-//    @GetMapping("/")
-//    public String getObservedAuctions(Model model, User user) {
-//        List<AuctionModel> auctions = auctionService.getObservedAuctions(user);
-//        model.addAttribute("auctions", auctions);
-//        return "auctions/listObservedAuctions"; // zwraca nazwę widoku, np. "auctions.html"
-//    }
 
     @GetMapping("/all")
     public String getAllAuctions(Model model) {
@@ -49,7 +40,7 @@ public class AuctionController {
     }
 
     @GetMapping("/auctionDetails/{id}")
-        public String getSingleAuction(@PathVariable Long id, Model model){
+    public String getSingleAuction(@PathVariable Long id, Model model) {
         model.addAttribute("singleAuction", auctionService.getAuctionById(id));
         return "auctions/detailsAuction";
     }
@@ -60,28 +51,15 @@ public class AuctionController {
         model.addAttribute("categoryList", categoryList);
         return "auctions/addNewAuction";
     }
+
     @PostMapping("/addAuction")
 
     public RedirectView postAuction(AuctionModel auction, Principal principal) {
 
         auctionService.processAuction(auction, principal);
-        return new RedirectView("/auctions/listAuctions");
+        return new RedirectView("/auctions/");
 
     }
-
-/*    @PostMapping("/addAuction")
-    public RedirectView postAuction(AuctionModel auction) {
-        categoryService.setAuctionToCategory(auction);
-        auctionService.addAuction(auction);
-
-        return new RedirectView("/auctions/addAuction");
-    }*/
-
-//        return new RedirectView("/auctions/");
-//
-//    }
-
-
 
     @PostMapping("/deleteAuction/{id}")
     public RedirectView deleteAuction(@PathVariable Long id) {
@@ -97,7 +75,6 @@ public class AuctionController {
         return "auctions/listAuctions"; // zwraca widok z wynikami wyszukiwania
     }
 
-
     // Metoda do prezentowania aukcji na podstawie kategorii.
     @GetMapping("/category/{id}")
     public String getAuctionsByCategory(@PathVariable Long id, Model model) {
@@ -110,24 +87,6 @@ public class AuctionController {
     public String showPlaceBidForm(Model model, @RequestParam("auctionId") Long auctionId) {
         model.addAttribute("auctionId", auctionId);
         return "auctions/placeBid";  // zwraca widok formularza do składania ofert
-    }
-
-    @PostMapping("/placeBid")
-    public String placeBid(
-            @RequestParam("auctionId") Long auctionId,
-            @RequestParam("proposedValue") BigDecimal proposedValue,
-            @RequestParam(name = "userId", required = false) Long userId,  // userId można uzyskać również z kontekstu sesji lub zabezpieczeń, zamiast przekazywać go jako parametr
-            RedirectAttributes redirectAttributes) {
-
-        boolean success = biddingService.placeBid(auctionId, proposedValue, userId);
-
-        if (success) {
-            redirectAttributes.addFlashAttribute("successMessage", "Twoja oferta została pomyślnie złożona.");
-        } else {
-            redirectAttributes.addFlashAttribute("errorMessage", "Nie udało się złożyć oferty. Sprawdź wprowadzone dane i spróbuj ponownie.");
-        }
-
-        return "redirect:/auctions/placeBid?auctionId=" + auctionId;  // przekierowuje z powrotem do formularza licytacji z komunikatem o powodzeniu lub niepowodzeniu
     }
 
     @ModelAttribute("currentUser")
@@ -144,11 +103,23 @@ public class AuctionController {
     }
 
     @PostMapping("/auctionDetails/{id}")
-    public String buyNow(@PathVariable Long id, Principal principal){
-        auctionService.buyAuctionWithBuyNowButton(id,principal);
+    public String buyNow(@PathVariable Long id, Principal principal) {
+        auctionService.buyAuctionWithBuyNowButton(id, principal);
         return "auctions/listAuctions";
     }
 
+    @GetMapping("/detailSearch")
+    public String getDetailSearch() {
+        return "auctions/detailSearch";
+    }
+
+    @PostMapping("/detailSearch")
+    public String postDetailSearch(String city, String voievodeship, Long sortDateType, Long buyNow, Model model, Long sortByValue) {
+
+        List<AuctionModel> auctions = auctionService.getFilteredAuctions(city, voievodeship, sortDateType, buyNow, sortByValue);
+        model.addAttribute("auctions", auctions);
+        return "auctions/listAuctions";
+    }
 
 
 }
