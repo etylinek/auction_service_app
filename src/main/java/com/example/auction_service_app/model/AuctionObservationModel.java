@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,8 +21,8 @@ public class AuctionObservationModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany//(mappedBy = "auctionObservationModel", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<AuctionModel> observedAuctionList;
+    @OneToMany(mappedBy = "observer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<AuctionModel> observedAuctionList = new ArrayList<>();
 
     @OneToOne
     private UserModel userModel;
