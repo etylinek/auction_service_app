@@ -46,22 +46,19 @@
                                         <label class="col-2 col-form-label">Miasto</label>
                                         <input class="col-10 form-control" type="text" name="city"
                                                placeholder="wpisz miasto">
-                                    </div>
 
-
-                                    <div class="form-group row">
                                         <label class="col-2 col-form-label">Województwo</label>
-                                        <textarea class="col-10 form-control" name="voievodeship" type="text"
-                                                  placeholder="wpisz wojewodzwo"></textarea>
+                                        <input class="col-10 form-control" name="voievodeship" type="text"
+                                                  placeholder="wpisz wojewodzwo"></input>
                                     </div>
                                     <div class="form-group row">
 
 
-                                        <label class="col-2 col-form-label">sortowanie przez czas</label>
+                                        <label class="col-2 col-form-label">Sortowanie wg czasu dodania aukcji lub końca</label>
                                         <input class="col-4 form-control" type="number" name="sortDateType">
 
 
-                                        <label class="col-2 col-form-label">sortowanie po cenie</label>
+                                        <label class="col-2 col-form-label">Sortowanie wg ceny</label>
                                         <input class="col-4 form-control" type="number" name="sortByValue">
                                         <%--                                    <select id="cars">--%>
                                         <%--                                        <option value="1"  type="number" name="sortDateType">start</option>--%>
@@ -77,7 +74,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-success">Wyślij</button>
+                        <button type="submit" class="btn btn-success">Szukaj</button>
                 </form>
             </div>
             <!-- /.container-fluid -->

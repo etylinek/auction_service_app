@@ -23,7 +23,7 @@ public class AuthenticationConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/auctions/*", "/categories/*","/users/*")
+                .antMatchers("/auctions/**", "/categories/**","/users/**")
                 .authenticated()
                 .antMatchers("/login")
                 .permitAll()

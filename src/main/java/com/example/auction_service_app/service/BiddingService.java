@@ -35,6 +35,9 @@ public class BiddingService {
         auctionRepository.save(auction);
     }
 
+    public List<BiddingModel> getAuctionBiddings(Long id){
+        return biddingRepository.findAllByAuction_Id(id);
+    }
 
     public boolean placeNewBid(Long auctionId, Long proposedValue, Long userId) {
         AuctionModel auction = auctionRepository.findById(auctionId).orElse(null);

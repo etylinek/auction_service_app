@@ -33,7 +33,8 @@
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
                     <h1 class=" m-0 font-weight-bold text-primary">${singleAuction.name}</h1>
-                    <h5 class=" m-0  text-primary">${singleAuction.categoryModel.name} - ${singleAuction.categoryModel.description}</h5>
+                    <h5 class=" m-0  text-primary">${singleAuction.categoryModel.name}
+                        - ${singleAuction.categoryModel.description}</h5>
                 </div>
 
                 <div class="row">
@@ -50,15 +51,35 @@
                             </div>
 
                             <div class="card-body">
-
-                               Cena: ${singleAuction.buyNowValue}
-                                <form method="post" action='<c:url value="/auctions/auctionDetails/${singleAuction.id}"/>'>
-                                <button class="btn btn-danger" type="submit">
-                                    <i> Kup Teraz! </i>
-                                </button>
+                                Cena: ${singleAuction.minValue}
+                                <form method="post" action='<c:url value="/bidding/placeBid/${singleAuction.id}"/>'>
+                                    <label class="col-2 col-form-label">Licytuj: </label>
+                                    <input class="col-4 form-control" type="number" name="proposedValue">
+                                    <button class="btn btn-danger" type="submit">
+                                        <i> Licytuj! </i>
+                                    </button>
                                 </form>
 
                             </div>
+
+                            <div class="card-body">
+
+                                Cena: ${singleAuction.buyNowValue}
+                                <form method="post"
+                                      action='<c:url value="/auctions/auctionDetails/${singleAuction.id}"/>'>
+                                    <button class="btn btn-danger" type="submit">
+                                        <i> Kup Teraz! </i>
+                                    </button>
+                                </form>
+
+                            </div>
+
+                            <c:forEach items="${bidding}" var="example">
+                                <div class="h5 mb-0 text-gray-800">
+                                    Użytkownik: ${example.userModel.accountName} Kwota: ${example.value}  Data: ${example.bidTime}
+                                </div>
+                            </c:forEach>
+
                         </div>
                     </div>
 

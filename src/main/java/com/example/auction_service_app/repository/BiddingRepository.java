@@ -11,6 +11,13 @@ import java.util.List;
 @Repository
 public interface BiddingRepository extends JpaRepository<BiddingModel, Long> {
     List<BiddingModel> findByUserModel(UserModel user);
+
+
+
+    List<BiddingModel> findAllByAuction_Id(Long id);
+
+
+
     @Query("SELECT MAX(b.value) FROM BiddingModel b WHERE b.auction.id = :auctionId")
     BigDecimal findHighestBidForAuction(Long auctionId);
 
