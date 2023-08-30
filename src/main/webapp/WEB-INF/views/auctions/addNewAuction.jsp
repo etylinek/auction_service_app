@@ -74,7 +74,9 @@
 
                                 <div class="form-group row">
                                     <label class="col-2 col-form-label">Data zakonczneia aukcji</label>
-                                    <input class="col-2 form-control" type="date" name="endDate">
+                                    <input class="col-2 form-control" type="datetime-local" name="endDate">
+
+
 
                                     <label class="col-2 col-form-label">Promuj aukcje</label>
                                     <input class="col-1 form-control" type="checkbox" name="isPromoted" value=true>

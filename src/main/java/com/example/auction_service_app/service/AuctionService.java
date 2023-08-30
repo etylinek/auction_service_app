@@ -47,6 +47,9 @@ public class AuctionService {
         auction.setUserModel(userRepository.findByAccountNameEquals(principal.getName()));
         auctionRepository.save(auction);
     }
+    public void addAuction(AuctionModel auction) {
+        auctionRepository.save(auction);
+    }
 
     public void deleteAuction(Long id) {
         auctionRepository.deleteById(id);
@@ -65,7 +68,7 @@ public class AuctionService {
     public void buyAuctionWithBuyNowButton(Long id, Principal principal) {
         AuctionModel auction = getAuctionById(id);
         if (auction.getAuctionStatusType() == AuctionStatusType.ACTIVE) {
-            auction.setAuctionStatusType(AuctionStatusType.SOLD);
+            auction.setAuctionStatusType(AuctionStatusType.ENDED);
             auction.setBuyer(userRepository.findByAccountNameEquals(principal.getName()));
             auctionRepository.save(auction);
         }

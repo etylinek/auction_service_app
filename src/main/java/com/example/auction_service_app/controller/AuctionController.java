@@ -40,8 +40,9 @@ public class AuctionController {
     }
 
     @GetMapping("/auctionDetails/{id}")
-    public String getSingleAuction(@PathVariable Long id, Model model) {
-        model.addAttribute("singleAuction", auctionService.getAuctionById(id));
+    public String getSingleAuction(@PathVariable Long id, Model auctionModel, Model biddingModel) {
+        auctionModel.addAttribute("singleAuction", auctionService.getAuctionById(id));
+        biddingModel.addAttribute("bidding", biddingService.getAuctionBiddings(id));
         return "auctions/detailsAuction";
     }
 
