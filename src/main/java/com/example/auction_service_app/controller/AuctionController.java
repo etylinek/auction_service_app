@@ -121,6 +121,20 @@ public class AuctionController {
         model.addAttribute("auctions", auctions);
         return "auctions/listAuctions";
     }
+    @PostMapping("/observeAuction")
+    public String observeAuction(Long auctionId, Principal principal) {
+        auctionService.observeAuction(principal, auctionId);  // tutaj używamy instancji, nie klasy
+        return "redirect:/path_to_auction_list";
+    }
+
+    @GetMapping("/observedAuctions")
+    public String showObservedAuctions(Model model, Principal principal) {
+        List<AuctionModel> observedAuctions = auctionService.getObservedAuctions(principal);  // tu też
+        model.addAttribute("auctions", observedAuctions);
+        return "observedAuctionsView";
+    }
+
+
 
 
 }
