@@ -27,7 +27,7 @@ public class Scheduler {
         List<AuctionModel> auctionModels = auctionService.getAllActiveAuctions();
 
         for (AuctionModel a : auctionModels) {
-            if (a.getEndDate().isAfter(LocalDateTime.now())) {
+            if (a.getEndDate().isBefore(LocalDateTime.now())) {
                 a.setAuctionStatusType(AuctionStatusType.ENDED);
                 auctionService.addAuction(a);
             }
