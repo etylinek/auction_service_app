@@ -23,8 +23,8 @@ public class UserModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
-    private AuctionObservationModel auctionObservationModel;
+    @OneToOne(mappedBy = "userModel", cascade = CascadeType.ALL)
+    private AuctionObservationModel auctionObservation;
 
 
 

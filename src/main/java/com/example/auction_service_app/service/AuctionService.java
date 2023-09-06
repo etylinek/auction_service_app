@@ -5,6 +5,7 @@ import com.example.auction_service_app.repository.*;
 import com.example.auction_service_app.types.AuctionStatusType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.security.Principal;
 import java.math.BigDecimal;
@@ -180,6 +181,7 @@ public class AuctionService {
                 .collect(Collectors.toList());
     }
 
+
     public List<AuctionModel> getBuyedUserAuctions(Principal principal) {
 
         return auctionRepository.findAllByAuctionStatusType(AuctionStatusType.ENDED)
@@ -190,3 +192,23 @@ public class AuctionService {
     }
 
 }
+
+
+
+@Transactional
+    public void observeAuction(Principal principal, Long auctionId) {
+        UserModel user = userRepository.findByAccountNameEquals(principal.getName());
+        AuctionModel auction = auctionRepository.findById(auctionId).orElseThrow();
+
+        user.getAuctionObservation().getObservedAuctionList().add(auction); //dodajemy aukcje do listy obserwowanych przez użytkownika
+        auction.setObserver(user);
+    }
+
+    public List<AuctionModel> getObservedAuctions(Principal principal) {
+        UserModel user = userRepository.findByAccountNameEquals(principal.getName());
+        return user.getAuctionObservation().getObservedAuctionList();
+        //poprzez getAuctionObservation dostajemy się do AuctionObservationModel w relacji one to one
+        // poprzez AuctionObservationModel dostajemy się do listy obserwowanych aukcji z tego unikalnego modelu
+    }
+}
+
