@@ -36,7 +36,10 @@ public class AuctionService {
     }
 
     public List<AuctionModel> getAllActiveAuctions() {
-        return auctionRepository.findAllByAuctionStatusType(AuctionStatusType.ACTIVE).stream().sorted(Comparator.comparing(AuctionModel::isPromoted).reversed()).collect(Collectors.toList());
+        return auctionRepository.findAllByAuctionStatusType(AuctionStatusType.ACTIVE)
+                .stream()
+                .sorted(Comparator.comparing(AuctionModel::isPromoted).reversed())
+                .collect(Collectors.toList());
     }
 
     public List<AuctionModel> getAllActiveAuctionsToSort() {
@@ -63,7 +66,10 @@ public class AuctionService {
 
     public List<AuctionModel> getAuctionsByCategory(CategoryModel categoryModel) {
         // Tu logika do wyszukiwania aukcji na podstawie kategorii.
-        return auctionRepository.findByCategoryModel(categoryModel);
+        return auctionRepository.findByCategoryModel(categoryModel)
+                .stream()
+                .filter(auctionModel -> auctionModel.getAuctionStatusType().equals(AuctionStatusType.ACTIVE))
+                .collect(Collectors.toList());
     }
 
     public void buyAuctionWithBuyNowButton(Long id, Principal principal) {
@@ -97,7 +103,7 @@ public class AuctionService {
 
     }
 
-    public List<AuctionModel> getFilteredAuctions(String city, String voievodeship, Long sortDateType, Long buyNow, Long sortByValue) {
+    public List<AuctionModel> getFilteredAuctions(String city, String voievodeship, Long sortDateType, Long buyNow) {
 
         List<AuctionModel> auctionList = getAllActiveAuctionsToSort();
 
@@ -121,15 +127,14 @@ public class AuctionService {
             if (sortDateType == 2) {
                 auctionList = sortAllActiveAuctionsWithEndDate(auctionList);
             }
-        }
-        if (sortByValue != null) {
-            if (sortByValue == 1) {
+            if (sortDateType == 3) {
                 auctionList = sortAllActiveAuctionsWithBuyNowValueDesc(auctionList);
             }
-            if (sortByValue == 2) {
+            if (sortDateType == 4) {
                 auctionList = sortAllActiveAuctionsWithBuyNowValueAsc(auctionList);
             }
         }
+
 
         return auctionList;
     }
@@ -177,6 +182,18 @@ public class AuctionService {
     }
 
 
+    public List<AuctionModel> getBuyedUserAuctions(Principal principal) {
+
+        return auctionRepository.findAllByAuctionStatusType(AuctionStatusType.ENDED)
+                .stream()
+                .filter(a -> a.getBuyer().getId().equals(userRepository.findByAccountNameEquals(principal.getName()).getId()))
+                .collect(Collectors.toList());
+
+    }
+
+}
+
+
 
 @Transactional
     public void observeAuction(Principal principal, Long auctionId) {
@@ -194,3 +211,4 @@ public class AuctionService {
         // poprzez AuctionObservationModel dostajemy się do listy obserwowanych aukcji z tego unikalnego modelu
     }
 }
+

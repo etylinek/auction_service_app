@@ -49,28 +49,18 @@
 
                                         <label class="col-2 col-form-label">Województwo</label>
                                         <input class="col-10 form-control" name="voievodeship" type="text"
-                                                  placeholder="wpisz wojewodzwo"></input>
+                                               placeholder="wpisz wojewodzwo"></input>
                                     </div>
                                     <div class="form-group row">
 
-
-                                        <label class="col-2 col-form-label">Sortowanie wg czasu dodania aukcji lub końca</label>
-                                        <input class="col-4 form-control" type="number" name="sortDateType">
-
-
-                                        <label class="col-2 col-form-label">Sortowanie wg ceny</label>
-                                        <input class="col-4 form-control" type="number" name="sortByValue">
-                                        <%--                                    <select id="cars">--%>
-                                        <%--                                        <option value="1"  type="number" name="sortDateType">start</option>--%>
-                                        <%--                                        <option value="2" type="number" name="sortDateType">end</option>--%>
-                                        <%--                                    </select>--%>
+                                        <label class="col-2 col-form-label">Sortuj wg daty</label>
+                                        <select class="form-control" id="sel1" name="sortDateType">
+                                            <option value="1" type="number" >Sortuj wg daty rozpoczęcia</option>
+                                            <option value="2" type="number" >Sortuj wg daty zakonczenia</option>
+                                            <option value="3" type="number" >Sortuj wg ceny malejąco</option>
+                                            <option value="4" type="number" >Sortuj wg ceny rosnąco</option>
+                                        </select>
                                     </div>
-
-                                    <div class="form-group row">
-                                        <label class="col-2 col-form-label">minimalna cena</label>
-                                        <input class="col-4 form-control" type="number" name="buyNow">
-                                    </div>
-
                                 </div>
                             </div>
                         </div>

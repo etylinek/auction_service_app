@@ -9,6 +9,7 @@ import com.example.auction_service_app.repository.BiddingRepository;
 import com.example.auction_service_app.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.math.BigDecimal;
 import java.security.Principal;
@@ -70,14 +71,14 @@ public class BiddingService {
     }
 
 
-    public String placeBid(Long auctionId, Long proposedValue, Principal principal) {
+    public RedirectView placeBid(Long auctionId, Long proposedValue, Principal principal) {
 
         Long userId = userRepository.findByAccountName(principal.getName()).orElse(null).getId();
 
         if (placeNewBid(auctionId, proposedValue, userId)) {
-            return "bid/bidGoodWay";
+            return new RedirectView("/auctions/auctionDetails/"+auctionId);
         }
-        return "bid/bidWrongWay";
+        return new RedirectView("../tooLow");
     }
 
 
