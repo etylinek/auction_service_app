@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.security.Principal;
 import java.math.BigDecimal;
 
+import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -81,17 +82,20 @@ public class AuctionService {
         }
     }
 
-    public void processAuction(AuctionModel auction, Principal principal) {
-        if (auction.getMinValue() != null && auction.getMinValue().compareTo(BigDecimal.ZERO) > 0) {
-            // to jest licytacja
-            categoryService.setAuctionToCategory(auction);
-            biddingService.addBidding(auction);
-            addAuction(auction, principal);
-        } else {
-            // to jest zwykła aukcja
-            categoryService.setAuctionToCategory(auction);
-            addAuction(auction, principal);
-        }
+    public boolean processAuction(AuctionModel auction, Principal principal) {
+        if(!auction.getEndDate().isBefore(LocalDateTime.now())) {
+            if (auction.getMinValue() != null && auction.getMinValue().compareTo(BigDecimal.ZERO) > 0) {
+                // to jest licytacja
+                categoryService.setAuctionToCategory(auction);
+                biddingService.addBidding(auction);
+                addAuction(auction, principal);
+            } else {
+                // to jest zwykła aukcja
+                categoryService.setAuctionToCategory(auction);
+                addAuction(auction, principal);
+            }
+            return true;
+        } else return false;
     }
 
     public List<AuctionModel> getAllUserAuctions(Principal principal) {
