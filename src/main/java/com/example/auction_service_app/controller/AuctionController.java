@@ -56,9 +56,13 @@ public class AuctionController {
     @PostMapping("/addAuction")
 
     public RedirectView postAuction(AuctionModel auction, Principal principal) {
+        if(auctionService.processAuction(auction, principal)){
+            return new RedirectView("/auctions/");
+        }
+        else{
+            return new RedirectView("/auctions/addAuction");
+        }
 
-        auctionService.processAuction(auction, principal);
-        return new RedirectView("/auctions/");
 
     }
 

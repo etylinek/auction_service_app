@@ -62,7 +62,6 @@ public class AuctionModel {
     private LocalDateTime startDate = LocalDateTime.now();
 
     @Column(name = "end_date")
-
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime endDate;
 
