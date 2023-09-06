@@ -30,6 +30,7 @@
                 <a class="collapse-item" href="<c:url value="/categories/"/>">Kategorie</a>
                 <a class="collapse-item" href="<c:url value="/auctions/detailSearch"/>">Wyszukiwanie szczeg</a>
                 <a class="collapse-item" href="<c:url value="/auctions/my"/>">Moje Aukcje</a>
+                <a class="collapse-item" href="<c:url value="/auctions/buyed"/>">Zakupione</a>
                 <a class="collapse-item" href="<c:url value="/auctions/addAuction"/>">Dodaj</a>
 
 

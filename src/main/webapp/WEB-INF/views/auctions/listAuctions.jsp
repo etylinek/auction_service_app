@@ -72,8 +72,15 @@
                                                 </c:when>
                                             </c:choose>
                                         </h5>
-                                        <div class="h5 mb-0 text-gray-800">
-                                            Data rozpoczecia: ${example.startDate} <br>Data zakonczenia: ${example.endDate}</div>
+                                        <br>
+                                        <div class="h6 mb-0 text-gray-800">
+                                            Data rozpoczecia: ${example.startDate} <div class="float-right"> Data zakonczenia: ${example.endDate}</div></div>
+                                        <br>
+
+                                        <div class="h6 mb-0 text-gray-800">
+                                            Miasto: ${example.userModel.city} <div class="float-right"> Województwo: ${example.userModel.voievodeship}</div></div>
+                                        <br><br>
+
 
                                         <div class="h5 mb-0 font-weight-bold text-gray-800">
                                             Licytacja: ${example.minValue} <br> Kup Teraz!: ${example.buyNowValue}</div>

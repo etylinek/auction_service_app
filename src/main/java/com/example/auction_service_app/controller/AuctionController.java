@@ -115,13 +115,19 @@ public class AuctionController {
     }
 
     @PostMapping("/detailSearch")
-    public String postDetailSearch(String city, String voievodeship, Long sortDateType, Long buyNow, Model model, Long sortByValue) {
+    public String postDetailSearch(String city, String voievodeship, Long sortDateType, Long buyNow, Model model) {
 
-        List<AuctionModel> auctions = auctionService.getFilteredAuctions(city, voievodeship, sortDateType, buyNow, sortByValue);
+        List<AuctionModel> auctions = auctionService.getFilteredAuctions(city, voievodeship, sortDateType, buyNow);
         model.addAttribute("auctions", auctions);
         return "auctions/listAuctions";
     }
 
+    @GetMapping("/buyed")
+    public String getBuyedUserAuctions(Model model, Principal principal) {
+        List<AuctionModel> auctions = auctionService.getBuyedUserAuctions(principal);
+        model.addAttribute("auctions", auctions);
+        return "auctions/listAuctions"; // zwraca nazwę widoku, np. "auctions.html"
+    }
 
 }
 

@@ -51,18 +51,6 @@
                             </div>
 
                             <div class="card-body">
-                                Cena: ${singleAuction.minValue}
-                                <form method="post" action='<c:url value="/bidding/placeBid/${singleAuction.id}"/>'>
-                                    <label class="col-2 col-form-label">Licytuj: </label>
-                                    <input class="col-4 form-control" type="number" name="proposedValue">
-                                    <button class="btn btn-danger" type="submit">
-                                        <i> Licytuj! </i>
-                                    </button>
-                                </form>
-
-                            </div>
-
-                            <div class="card-body">
 
                                 Cena: ${singleAuction.buyNowValue}
                                 <form method="post"
@@ -70,15 +58,32 @@
                                     <button class="btn btn-danger" type="submit">
                                         <i> Kup Teraz! </i>
                                     </button>
+                                    <br><br>
                                 </form>
 
                             </div>
 
-                            <c:forEach items="${bidding}" var="example">
-                                <div class="h5 mb-0 text-gray-800">
-                                    Użytkownik: ${example.userModel.accountName} Kwota: ${example.value}  Data: ${example.bidTime}
-                                </div>
-                            </c:forEach>
+                            <div class="card-body">
+
+                                Cena: ${singleAuction.minValue}
+                                <form method="post" action='<c:url value="/bidding/placeBid/${singleAuction.id}"/>'>
+                                    <label class="col-2 col-form-label">Licytuj: </label>
+                                    <input class="col-2 form-control" type="number" name="proposedValue">
+                                    <br>
+                                    <button class="btn btn-danger" type="submit">
+                                        <i> Licytuj! </i>
+                                    </button>
+                                </form>
+
+                                <c:forEach items="${bidding}" var="example">
+                                    <div class="h5 mb-0 text-gray-800">
+                                        <br>
+                                        Licytacja: ${example.userModel.accountName} <div class="float-right">Kwota: ${example.value}PLN  Data: ${example.bidTime}</div>
+
+                                    </div>
+                                </c:forEach>
+                            </div>
+
 
                         </div>
                     </div>
